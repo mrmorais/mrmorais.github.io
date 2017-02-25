@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Scraping com produtos da Submarino.com">
+<meta property="og:url" content="http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/index.html">
+<meta property="og:site_name" content="Maradona Morais">
+<meta property="og:description" content="Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto co">
+<meta property="og:image" content="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg">
+<meta property="og:updated_time" content="2017-02-25T01:40:05.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web Scraping com produtos da Submarino.com">
+<meta name="twitter:description" content="Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto co">
+<meta name="twitter:image" content="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Web Scraping com produtos da Submarino.com</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&text=Web Scraping com produtos da Submarino.com"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&is_video=false&description=Web Scraping com produtos da Submarino.com"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Web Scraping com produtos da Submarino.com&body=Check out this article: http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&name=Web Scraping com produtos da Submarino.com&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Por-que"><span class="toc-number">1.</span> <span class="toc-text">Por quê?</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Web Scraping com produtos da Submarino.com
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Maradona Morais</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-05-18T01:39:09.000Z" itemprop="datePublished">17/05/2016</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg" alt="Logomarca da Submarino"></p>
+<p>Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto como objeto.</p>
+<p>Web Scraping é uma técnica bastante simples e muito utilizada pelos robôs da Google, que buscam e qualificam conteúdos na internet para serem buscados pelo navegador. Esta técnica consiste em ler todo o HTML de uma determinada página, como se fosse interpretá-la. Parecido com o que fazem os leitores de tela.</p>
+<p>Pois bem, com Web Scraping é possível realizar a obtenção de dados de qualquer tipo de página e com produtos esta regra torna-se bem mais simples já que sempre existe uma pré-disposição dos elementos de uma página, o que nós chamamos de <em>layout</em>. Portanto, o meu algoritmo sabe qual o <em>layout</em> das paginas de produtos da Submarino e, com isso, ele consegue ler as informações de quase todos os produtos.</p>
+<p>Eu acabei de disponibilizar o pacote desta simples aplicação (ao abrir, você verá que é realmente simples) e está disponível no NPM com o nome <strong>submarino-scrap</strong> (<a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="external">acessar</a>)</p>
+<h4 id="Por-que"><a href="#Por-que" class="headerlink" title="Por quê?"></a>Por quê?</h4><p>A aplicação deste simples algoritmo pode ser útil em diversas coisas. A primeira coisa que deve ser notada é que nenhuma empresa possui uma API pública de seus produtos, mesmo que estas informações possam ser de interesse para diversas aplicações.</p>
+<p>Fazer uma API pública destas informações permitiria o desenvolvimento de diversas aplicações legais (e abertas) que façam por exemplo a monitoria da variação dos preços dos produtos (ver como funciona a “Black Friday”), base estatística, mineração de dados, etc.</p>
+<p>A ideia é fazer e disponibilizar um web scraping para cada grande e-commerce da internet e por fim criar um pacote que integre todos os demais e que faça a leitura de produtos da maioria dos sites de venda do Brasil.</p>
+<p>Não irei fazer tutorial deste pacote aqui no sie, uma exemplo prático já se encontra na <a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="external">página do NPM</a> e você pode conferir lá. Nos próximos dias estarei criando os novos “scraps” e também disponibilizando um repositório no GitHub para que mais pessoas possam se tornar contribuidoras.</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Por-que"><span class="toc-number">1.</span> <span class="toc-text">Por quê?</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&text=Web Scraping com produtos da Submarino.com"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&is_video=false&description=Web Scraping com produtos da Submarino.com"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Web Scraping com produtos da Submarino.com&body=Check out this article: http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&title=Web Scraping com produtos da Submarino.com"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/&name=Web Scraping com produtos da Submarino.com&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Maradona Morais
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

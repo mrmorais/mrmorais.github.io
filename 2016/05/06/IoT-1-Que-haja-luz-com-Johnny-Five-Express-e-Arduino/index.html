@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Ver código no GitHub
+Olá! Seja bem vindo ao meu GitHub blog. Eu tenho a intenção de escrever várias séries de “tutoriais” que possam ser colocados em prática e que, acima de tudo, sejam interessantes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[IoT 1] Que haja luz com Johnny-Five, Express e Arduino">
+<meta property="og:url" content="http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/index.html">
+<meta property="og:site_name" content="Maradona Morais">
+<meta property="og:description" content="Ver código no GitHub
+Olá! Seja bem vindo ao meu GitHub blog. Eu tenho a intenção de escrever várias séries de “tutoriais” que possam ser colocados em prática e que, acima de tudo, sejam interessantes">
+<meta property="og:image" content="http://i.imgur.com/q5jEcTe.png">
+<meta property="og:image" content="http://johnny-five.io/img/breadboard/led-13.png">
+<meta property="og:updated_time" content="2017-02-25T01:37:27.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[IoT 1] Que haja luz com Johnny-Five, Express e Arduino">
+<meta name="twitter:description" content="Ver código no GitHub
+Olá! Seja bem vindo ao meu GitHub blog. Eu tenho a intenção de escrever várias séries de “tutoriais” que possam ser colocados em prática e que, acima de tudo, sejam interessantes">
+<meta name="twitter:image" content="http://i.imgur.com/q5jEcTe.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&text=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&is_video=false&description=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino&body=Check out this article: http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&name=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-Node-JS"><span class="toc-number">1.</span> <span class="toc-text">Express + Node JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Johnny-Five"><span class="toc-number">2.</span> <span class="toc-text">Johnny-Five</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Juntando-as-pecas"><span class="toc-number">3.</span> <span class="toc-text">Juntando as peças</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [IoT 1] Que haja luz com Johnny-Five, Express e Arduino
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Maradona Morais</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-05-07T01:32:19.000Z" itemprop="datePublished">06/05/2016</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led" target="_blank" rel="external">Ver código no GitHub</a></p>
+<p>Olá! Seja bem vindo ao meu GitHub blog. Eu tenho a intenção de escrever várias séries de “tutoriais” que possam ser colocados em prática e que, acima de tudo, sejam interessantes e explorem a criatividade para desenvolver mais coisas interessantes.</p>
+<p>Neste post nós iremos criar uma aplicação que envolve Node JS, Express e Johnny-Five. Tudo isso controlando um LED numa placa Arduino (a minha é versão UNO, verifique no site do <a href="http://johnny-five.io" target="_blank" rel="external">Johnny-Five</a> as placas compatíveis.)</p>
+<h3 id="Express-Node-JS"><a href="#Express-Node-JS" class="headerlink" title="Express + Node JS"></a>Express + Node JS</h3><p><strong>Node JS</strong>, por uma definição básica do <a href="https://pt.wikipedia.org/wiki/Node.js" target="_blank" rel="external">Wikipédia</a>, é um interpretador de JavaScript que funciona no lado do servidor. É baseado no interpretador V8, da Google. Node JS é, sem dúvidas, algo muito poderoso e que possui muita força na comunidade, dá para fazer extremamente tudo com Node JS. Futuramente estaremos falando mais sobre ele e suas aplicações diversas.</p>
+<p>Um dos framework para web desenvolvidos para Node JS é o <strong>Express</strong> (ou Express JS). É um frame bastante completo e que possui suporte para a maioria das views engines.</p>
+<h3 id="Johnny-Five"><a href="#Johnny-Five" class="headerlink" title="Johnny-Five"></a>Johnny-Five</h3><p>Essa, assim como o Express, é mais uma biblioteca para NodeJS. <strong>Johnny-Five</strong> permite controlar placas como Arduino, BeagleBone, e muitas outras, com JavaScript através do NodeJS.</p>
+<h3 id="Juntando-as-pecas"><a href="#Juntando-as-pecas" class="headerlink" title="Juntando as peças"></a>Juntando as peças</h3><p>Em resumo: NodeJS é muito rico em aplicações e principalmente é muito versátil. Podemos conectar duas bibliotecas inteiramente independentes e desenvolver soluções bastante criativas. E é isto que faremos hoje! Iremos utilizar o Johnny-Five para controlar a nossa placa Arduino e na mesma aplicação criar um servidor web para que esse controle possa ser feito através da rede ou, quem sabe, através da internet.</p>
+<p><strong>Mãos ao código!!!</strong></p>
+<p>(Certifique-se de possuir o NodeJS instalado)</p>
+<p>A primeira coisa a se fazer é, em uma pasta vazia, instalar nosso pacote express e o johnny-five. No terminal:</p>
+<pre><code>sudo npm install express --save
+sudo npm install johnny-five --save
+</code></pre><p>Em outros post falaremos sobre o NPM e sobre como organizar um projeto com ele. Você pode criar uma aplicação Express através do comando “express nome-da-app”, no entanto eu desencorajo esta prática e sugiro que você mesmo crie os arquivos da aplicação.</p>
+<p>Crie o arquivo principal <strong>index.js</strong>:</p>
+<pre><code>var express = require(&apos;express&apos;);
+var five = require(&apos;johnny-five&apos;);
+</code></pre><p>Indica ao NodeJS que a aplicação requer express e johnny-five instalados</p>
+<pre><code>var board = new five.Board();
+var led;
+var status = &quot;Apagado&quot;;
+
+board.on(&quot;ready&quot;, function() {
+    led = new five.Led(13);
+});
+</code></pre><p>A construção de <code>five.Board()</code> faz uma varredura nas portas seriais do computador na finalidade de encontrar uma placa a ser controlada. A variável status irá servir apenas para exibir ou alterar o estado do LED futuramente, por enquanto é Apagado.</p>
+<p><code>board.on()</code> é executado quando a placa foi encontrada e está pronta para rodar. Neste estágio nós inicializamos um LED na porta 13 da placa.</p>
+<pre><code>var app = express();
+app.use(express.static(__dirname + &apos;/public&apos;));
+</code></pre><p>Usaremos a variável app para gerenciar a nossa instancia de uma aplicação Express. A função <code>use()</code>, neste caso, o diretório de arquivos estáticos do nosso site. Como normalmente em qualquer site. Aqui foi escolhido a pasta /public.</p>
+<pre><code>app.post(&apos;/led&apos;, function(req, res) {
+    var command = req.body.acao;
+    console.log(command);
+    if (command == &quot;apagar&quot;) {
+        console.log(&quot;Apagando...&quot;);
+        if(led.off()){
+            status = &quot;Apagado&quot;;
+            console.log(&quot;Sucesso. Apagado.&quot;);
+
+            res.send(status);
+        } else {
+            res.send(&quot;error&quot;);
+        }
+    }
+
+    if (command == &quot;acender&quot;) {
+        console.log(&quot;Acendendo...&quot;);
+        if(led.on()){
+            status = &quot;Aceso&quot;;
+            console.log(&quot;Sucesso. Aceso.&quot;);
+
+            res.send(status);
+        } else {
+            res.send(&quot;error&quot;);
+        }
+    }
+});
+</code></pre><p><code>app.post()</code> ou <code>app.get()</code> serão usadas para responder às requisições HTTP do respectivo tipo, POST ou GET (também existem outros). Este com o POST receberá requisições por AJAX com um parametro ‘acao’. Dependendo da ação recebida ele irá executar o comando <code>led.on()</code>, para acender, ou <code>led.off()</code>, para apagar. E a resposta (<code>res.send()</code>) será o novo estado do LED.</p>
+<pre><code>app.get(&apos;/&apos;, function(req, res) {
+    res.render(&apos;home&apos;, {ledStatus: status});
+});
+</code></pre><p>Essa resposta GET irá renderizar a página inicial e passar o estado do led.</p>
+<pre><code>app.listen(3000, function() {
+    console.log(&apos;Express started&apos;);
+});
+</code></pre><p>Por fim, o aplicativo é colocado para “rodar” na porta 3000.</p>
+<p>Bem, agora temos o cerne de nossa aplicação. Agora precisamos criar uma view. A view irá incorporar o jQuery que será utilizado para enviar requisições por ajax para POST ‘/led’ que irá tratar ações. Não irei detalhar como a view foi feita, sugiro que baixe o código-fonte deste tutorial para ver como ficou na íntegra. </p>
+<p><a href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led" target="_blank" rel="external">Ver código no GitHub</a></p>
+<p><img src="http://i.imgur.com/q5jEcTe.png" alt=""></p>
+<p>Para rodar o código é muito simples. No terminal:</p>
+<pre><code>node index.js
+</code></pre><p>Antes de executar certifique-se de preparar sua placa com um led no pino 13 e ligar em uma porta USB. </p>
+<p><img src="http://johnny-five.io/img/breadboard/led-13.png" alt=""></p>
+<p>Algo interessante para se fazer é testar isso pelo smartphone conectado à rede. Para isso é necessário liberar a porta 3000 do seu computador na interface de rede:</p>
+<pre><code>iptables -A INPUT -p tcp -i wlan0 --dport 3000 -j ACCEPT
+</code></pre><p>Espero ter contribuído com este tutorial! Em breve trarei mais coisas interessantes. Até mais e <strong>Do Free Code!</strong></p>
+<p><a href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led" target="_blank" rel="external">Ver código no GitHub</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Express-Node-JS"><span class="toc-number">1.</span> <span class="toc-text">Express + Node JS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Johnny-Five"><span class="toc-number">2.</span> <span class="toc-text">Johnny-Five</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Juntando-as-pecas"><span class="toc-number">3.</span> <span class="toc-text">Juntando as peças</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&text=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&is_video=false&description=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino&body=Check out this article: http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&title=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/06/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino/&name=[IoT 1] Que haja luz com Johnny-Five, Express e Arduino&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Maradona Morais
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

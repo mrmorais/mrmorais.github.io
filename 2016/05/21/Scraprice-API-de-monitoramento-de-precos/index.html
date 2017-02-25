@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Na postagem anterior apresentei um módulo NPM que faz WebScraping com produtos da loja Submarino e “converte” o link do produto em informações do produto. 
+Utilizando este módulo que desenvolvi, criei">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scraprice - API de monitoramento de preços">
+<meta property="og:url" content="http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/index.html">
+<meta property="og:site_name" content="Maradona Morais">
+<meta property="og:description" content="Na postagem anterior apresentei um módulo NPM que faz WebScraping com produtos da loja Submarino e “converte” o link do produto em informações do produto. 
+Utilizando este módulo que desenvolvi, criei">
+<meta property="og:image" content="http://i.imgur.com/UUynpp0.png">
+<meta property="og:updated_time" content="2017-02-25T01:41:34.667Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scraprice - API de monitoramento de preços">
+<meta name="twitter:description" content="Na postagem anterior apresentei um módulo NPM que faz WebScraping com produtos da loja Submarino e “converte” o link do produto em informações do produto. 
+Utilizando este módulo que desenvolvi, criei">
+<meta name="twitter:image" content="http://i.imgur.com/UUynpp0.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Scraprice - API de monitoramento de preços</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2016/05/17/Web-Scraping-com-produtos-da-Submarino-com/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&text=Scraprice - API de monitoramento de preços"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&is_video=false&description=Scraprice - API de monitoramento de preços"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scraprice - API de monitoramento de preços&body=Check out this article: http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&name=Scraprice - API de monitoramento de preços&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Scraprice - API de monitoramento de preços
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Maradona Morais</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-05-22T01:40:37.000Z" itemprop="datePublished">21/05/2016</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Na postagem anterior apresentei um módulo NPM que faz WebScraping com produtos da loja Submarino e “converte” o link do produto em informações do produto. </p>
+<p>Utilizando este módulo que desenvolvi, criei um site com Node, Angular e Express usando um banco de dados MongoDB e eis o resultado: Scraprice. Esta ferramenta faz algo bastante simples: além de fazer o scraping e armazenar os dados, ele diariamente roda um script que busca o preço do produto e coloca em uma array de todos os preços já computados. Nada diferente do que é feito, por exemplo, no Zoom ou Buscapé.</p>
+<p>Por enquanto a API ainda não está documentada e o código ainda não está no GitHub.</p>
+<p><a href="http://scraprice-mrmorais.rhcloud.com/" target="_blank" rel="external">Acessar o Scraprice</a></p>
+<p>A aplicação está hospedada com <a href="https://openshift.redhat.com" target="_blank" rel="external">Open Shift / Red Hat Cloud</a>, com 1GB de espaço. E o banco de dados está no <a href="http://mlab.com/" target="_blank" rel="external">MLab</a>, 500MB.</p>
+<p><img src="http://i.imgur.com/UUynpp0.png" alt=""></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&text=Scraprice - API de monitoramento de preços"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&is_video=false&description=Scraprice - API de monitoramento de preços"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scraprice - API de monitoramento de preços&body=Check out this article: http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&title=Scraprice - API de monitoramento de preços"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2016/05/21/Scraprice-API-de-monitoramento-de-precos/&name=Scraprice - API de monitoramento de preços&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Maradona Morais
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
