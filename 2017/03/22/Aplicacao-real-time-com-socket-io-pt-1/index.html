@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://mrmorais.github.io/2017/03/22/Aplicacao-real-time-com-socket-io-pt-1/index.html">
 <meta property="og:site_name" content="Maradona Morais">
 <meta property="og:description" content="Neste artigo utilizaremos a biblioteca socket.io para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: “Pig Dice” como atividade de">
-<meta property="og:updated_time" content="2017-03-23T02:45:31.841Z">
+<meta property="og:updated_time" content="2017-03-24T03:29:54.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Aplicação real-time com socket.io (parte 1)">
 <meta name="twitter:description" content="Neste artigo utilizaremos a biblioteca socket.io para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: “Pig Dice” como atividade de">
@@ -72,6 +72,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2017/03/23/ecmascript-6-e-como-usar/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
         
         <li><a class="icon" href="/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
         
@@ -128,6 +130,11 @@
 
 
       
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Node-JS/">Node.JS</a>, <a class="tag-link" href="/tags/Pig-Web-Dice/">Pig Web Dice</a>, <a class="tag-link" href="/tags/Socket-io/">Socket.io</a>
+    </div>
+
 
     </div>
   </header>
@@ -154,10 +161,10 @@
 <h2 id="Pig-Dice"><a href="#Pig-Dice" class="headerlink" title="Pig Dice"></a>Pig Dice</h2><p>Um jogo de dados para <strong>duas</strong> pessoas. Cada jogador deve acumular a maior quantidade de pontos possíveis. Os pontos são determinados pelo resultado de cada rodada e cada participante joga uma rodada de cada vez. O primeiro inicia a primeira rodada jogando um dado. Se o número que saiu no dado for 1, o jogador não acumula nenhum ponto e passa a vez para o próximo; se for diferente de 1, ele pode jogar o dado novamente e ir acumulando os pontos na rodada atual. Desde que não caia 1, o jogador pode decidir se para ou continua jogando e acumulando mais pontos (com a possibilidade de tirar 1 e não ganhar nada na rodada). Se escolher parar, os pontos da rodada somam-se aos seus pontos totais. Ganha o jogo o primeiro jogador que fizer 100 ou mais pontos.</p>
 <p>Se a explicação não ficou muito clara, recomendo ler sobre o jogo no Wikipédia: <a href="https://goo.gl/C5iXdo" target="_blank" rel="external">Pig Dice</a></p>
 <h2 id="Codigo-no-GitHub"><a href="#Codigo-no-GitHub" class="headerlink" title="Código no GitHub"></a>Código no GitHub</h2><p>O código da aplicação completa, ou seja, que será incrementada a cada artigo está disponível <a href="https://github.com/mrmorais/pig_web_dice" target="_blank" rel="external">neste link para o GitHub</a>. No entanto, para haver um sentido atemporal na leitura dos artigos, cada novo código desta série estará no repositório <a href="https://github.com/mrmorais/tutoriais" target="_blank" rel="external">mrmorais/tutoriais</a>!</p>
-<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p>Neste artigo não irei mostrar como montar um setup legal para Node JS com ES6, mas estarei utilizando esse setup. Em breve irei postar algo sobre a montagem de um setup e disponibilizar um “boilerplate” para Node com JS6 etc. Enquanto isso, <a href="https://www.google.com.br/?gws_rd=cr,ssl&amp;ei=3SnTWKTFHomDwQSdtZCwCw#q=node+es6+babel&amp;*" target="_blank" rel="external">existe tutoriais online que mostram como montar</a>.</p>
+<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p><a href="http://mrmorais.com.br/2017/03/23/ecmascript-6-e-como-usar/" target="_blank" rel="external">Neste artigo</a> eu ensino como montar um setup ideal para Node JS com ES6, recomendo que antes de começar o desenvolvimento você o leia e monte o cenário necessário.</p>
 <p>Crie um arquivo <code>app.js</code> na raiz do seu projeto, e vamos inicializa-lo para termos um servidor simples rodando.</p>
 <blockquote>
-<p>Note: se você não inicializou corretamente o setup necessário (NPM + Babel), nenhum código a seguir deverá funcionar</p>
+<p>Note: se você não inicializou corretamente o setup necessário (NPM + Babel), nenhum código a seguir deverá funcionar. </p>
 </blockquote>
 <p><strong>{path}/app.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'http'</span>;</div><div class="line"><span class="keyword">import</span> socketIo <span class="keyword">from</span> <span class="string">'socket.io'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> server = http.createServer(app);</div><div class="line"><span class="keyword">const</span> io = socketIo(server);</div><div class="line"></div><div class="line">app.listen(<span class="number">8080</span>);</div></pre></td></tr></table></figure></p>
 <p>Importamos o <code>express</code>, framework web para Node que, neste momento, utilizaremos para entregar uma página HTML simples. Além disso também importamos o <code>http</code> que proverá o nosso servidor na porta 8080. E, obviamente, importamos o <code>socket.io</code> que será a base para a comunicação <em>event-based</em>.</p>
