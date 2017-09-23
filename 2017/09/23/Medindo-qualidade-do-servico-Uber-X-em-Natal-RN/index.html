@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Em março 2016 o The Washington Post lançou uma matéria super interessante da jornalista computacional Jennifer Stark e do professor Nicholas Diakopoulos. A reportagem indagava que o Uber em Los Angele">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Medindo qualidade do serviço Uber X em Natal/RN">
+<meta property="og:url" content="http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/index.html">
+<meta property="og:site_name" content="Maradona Morais">
+<meta property="og:description" content="Em março 2016 o The Washington Post lançou uma matéria super interessante da jornalista computacional Jennifer Stark e do professor Nicholas Diakopoulos. A reportagem indagava que o Uber em Los Angele">
+<meta property="og:image" content="https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/blogs/wonkblog/files/2016/03/uber1.png&w=1484">
+<meta property="og:image" content="https://github.com/mrmorais/uber-map-natal/blob/master/imgs/pontos_mapeados.png?raw=true">
+<meta property="og:image" content="https://github.com/mrmorais/uber-map-natal/blob/master/imgs/without_lbls.png?raw=true">
+<meta property="og:updated_time" content="2017-09-23T23:46:13.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Medindo qualidade do serviço Uber X em Natal/RN">
+<meta name="twitter:description" content="Em março 2016 o The Washington Post lançou uma matéria super interessante da jornalista computacional Jennifer Stark e do professor Nicholas Diakopoulos. A reportagem indagava que o Uber em Los Angele">
+<meta name="twitter:image" content="https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/blogs/wonkblog/files/2016/03/uber1.png&w=1484">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Medindo qualidade do serviço Uber X em Natal/RN</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2017/06/17/C-eleste-Jogo-da-cobrinha-autonomo/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&text=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&is_video=false&description=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Medindo qualidade do serviço Uber X em Natal/RN&body=Check out this article: http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&name=Medindo qualidade do serviço Uber X em Natal/RN&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mapeando-a-cidade"><span class="toc-number">1.</span> <span class="toc-text">Mapeando a cidade</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executando-as-requisicoes"><span class="toc-number">2.</span> <span class="toc-text">Executando as requisições</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resultado"><span class="toc-number">3.</span> <span class="toc-text">Resultado</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Medindo qualidade do serviço Uber X em Natal/RN
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Maradona Morais</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-09-23T22:40:26.000Z" itemprop="datePublished">23/09/2017</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Em março 2016 o The Washington Post lançou uma <a href="https://www.washingtonpost.com/news/wonk/wp/2016/03/10/uber-seems-to-offer-better-service-in-areas-with-more-white-people-that-raises-some-tough-questions/?utm_term=.21414a6a4db8" target="_blank" rel="external">matéria super interessante</a> da jornalista computacional Jennifer Stark e do professor Nicholas Diakopoulos. A reportagem indagava que o Uber em Los Angeles aparenta ter um serviço melhor em áreas com mais pessoas brancas, e para chegar a esta conclusão eles consumiram durante um mês a API pública do Uber e mediram a qualidade do serviço em todos os bairros.</p>
+<p>A ideia é bastante simples: foi utilizado como indicador de qualidade o tempo (estimado pelo aplicativo) que um motorista levaria para chegar até o local em que o cliente se encontra, esta informação pode ser obtida pela <a href="https://developer.uber.com/docs/riders/ride-requests/tutorials/api/python" target="_blank" rel="external">API do Uber</a>. Então, basta mapear diversos pontos distribuidos por toda cidade e periodicamente armazenar os tempos estimados. Depois é só analizar os dados obtidos com ferramentas adequadas. </p>
+<p>Este foi o resultado do estudo do The Washington Post:</p>
+<p><img src="https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/blogs/wonkblog/files/2016/03/uber1.png&w=1484"></p>
+<p>Em 26 de agosto deste ano (2017) fez um ano desde que o Uber passou a operar em Natal/RN. Motivados pela <a href="https://www.facebook.com/fmasanori/posts/10214024510345174" target="_blank" rel="external">notícia compartilhada pelo professor Fernando Masanori</a>, eu e meu colega Daniel Marx decidimos explorar um pouco da API Uber e reproduzir o que Jennifer e Nicholas fizeram com os dados do Uber em Los Angeles.</p>
+<h3 id="Mapeando-a-cidade"><a href="#Mapeando-a-cidade" class="headerlink" title="Mapeando a cidade"></a>Mapeando a cidade</h3><p>A primeira informação importante para este estudo é as localizações e bairros que deverão ter as estimativas de espera rastreadas. Então, mapeamos diversos pontos na cidade de Natal, um total de 86 localidades – Natal tem 36 bairros, cada bairro teve entre 2 e 3 localidades mapeadas dependendo do tamanho do bairro. </p>
+<p>Por engano, o bairro Nova Parnamirim não foi mapeado</p>
+<p>Este é o mapa de localidades construído:</p>
+<p><img src="https://github.com/mrmorais/uber-map-natal/blob/master/imgs/pontos_mapeados.png?raw=true"></p>
+<p>As coordenadas (latitude e longitude) dos pontos mapeados foram armazenadas em uma estrutura de dados para leitura pelo script de requisições. Observe que os pontos foram escolhidos aleatoriamente – o trabalho do The Washington Post faz uma seleção uniforme dos pontos (ou seja, todos pontos têm uma mesma distancia dos pontos adjacentes).</p>
+<h3 id="Executando-as-requisicoes"><a href="#Executando-as-requisicoes" class="headerlink" title="Executando as requisições"></a>Executando as requisições</h3><p>Foi criado um script em Python que a cada 3 minutos faz 86 requisições (uma para cada localidade) à API do Uber, e salva os tempos estimados retornados pela API em um arquivo, para analise posterior. Esse script ficou em execução durante 5 dias (entre 14 e 19 de setembro) tendo efetuado quase 157 mil requisições.</p>
+<h3 id="Resultado"><a href="#Resultado" class="headerlink" title="Resultado"></a>Resultado</h3><p>O tratamento posterior dos dados que fizemos foi efetuar uma média, por bairro, do tempo de estimativa de espera. Por fim, representamos as médias obtidas em um mapa e chegamos a este resultado:</p>
+<p><img src="https://github.com/mrmorais/uber-map-natal/blob/master/imgs/without_lbls.png?raw=true"></p>
+<p>Todos os códigos utilizados neste estudo estão disponíveis no meu Github <a href="https://github.com/mrmorais/uber-map-natal" target="_blank" rel="external">neste endereço</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mapeando-a-cidade"><span class="toc-number">1.</span> <span class="toc-text">Mapeando a cidade</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executando-as-requisicoes"><span class="toc-number">2.</span> <span class="toc-text">Executando as requisições</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resultado"><span class="toc-number">3.</span> <span class="toc-text">Resultado</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&text=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&is_video=false&description=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Medindo qualidade do serviço Uber X em Natal/RN&body=Check out this article: http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&title=Medindo qualidade do serviço Uber X em Natal/RN"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://mrmorais.github.io/2017/09/23/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN/&name=Medindo qualidade do serviço Uber X em Natal/RN&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Maradona Morais
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/mrmorais">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
