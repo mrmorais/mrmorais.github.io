@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Neste artigo utilizaremos a biblioteca socket.io para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: “Pig Dice” como atividade de">
+<meta name="keywords" content="Pig Web Dice,Node.JS,Socket.io">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Aplicação real-time com socket.io (parte 1)">
 <meta property="og:url" content="http://mrmorais.github.io/2017/03/22/Aplicacao-real-time-com-socket-io-pt-1/index.html">
 <meta property="og:site_name" content="Maradona Morais">
 <meta property="og:description" content="Neste artigo utilizaremos a biblioteca socket.io para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: “Pig Dice” como atividade de">
-<meta property="og:updated_time" content="2017-03-24T03:37:34.496Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-02T22:16:54.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Aplicação real-time com socket.io (parte 1)">
 <meta name="twitter:description" content="Neste artigo utilizaremos a biblioteca socket.io para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: “Pig Dice” como atividade de">
@@ -62,30 +64,30 @@
          
           <li><a href="/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Artigos</a></li>
          
-          <li><a href="http://github.com/mrmorais">Projects</a></li>
+          <li><a href="http://github.com/mrmorais">Projetos</a></li>
         
       </ul>
     </span>
-    <br/>
+    <br>
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/03/23/ecmascript-6-e-como-usar/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        <li><a class="icon" href="/2017/03/23/ecmascript-6-e-como-usar/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$("#i-prev").toggle();" onmouseout="$("#i-prev").toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        <li><a class="icon" href="/2016/05/21/Scraprice-API-de-monitoramento-de-precos/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$("#i-next").toggle();" onmouseout="$("#i-next").toggle();"></i></a></li>
         
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$("#i-top").toggle();" onmouseout="$("#i-top").toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$("#i-share").toggle();" onmouseout="$("#i-share").toggle();" onclick="$("#share").toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Share post</span>
     </span>
-    <br/>
+    <br>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://mrmorais.github.io/2017/03/22/Aplicacao-real-time-com-socket-io-pt-1/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
@@ -110,7 +112,7 @@
     
     <div class="content index width mx-auto px2 my4">
         
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
@@ -120,7 +122,7 @@
 
 
     <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
         <span itemprop="name">Maradona Morais</span>
       </span>
       
@@ -141,7 +143,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>Neste artigo utilizaremos a biblioteca <a href="https://socket.io" target="_blank" rel="external">socket.io</a> para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: <a href="https://goo.gl/C5iXdo" target="_blank" rel="external">“Pig Dice”</a> como atividade de “Linguagem de Programação I”. Mas, enquanto para a matéria eu vou desenvolver a solução em C++, aqui vou criar uma versão web com Node.JS.</p>
+    <p>Neste artigo utilizaremos a biblioteca <a href="https://socket.io" target="_blank" rel="noopener">socket.io</a> para desenvolver uma aplicação multiplayer “real-time”. A ideia surgiu quando me foi apresentado um jogo de dados chamado: <a href="https://goo.gl/C5iXdo" target="_blank" rel="noopener">“Pig Dice”</a> como atividade de “Linguagem de Programação I”. Mas, enquanto para a matéria eu vou desenvolver a solução em C++, aqui vou criar uma versão web com Node.JS.</p>
 <p>Basicamente vou utilizar Express (inicialmente), Socket.io (para comunicar o servidor com os jogadores), React JS (para fazer o front end). Perceba que o servidor não vai persistir informações dos jogadores em um banco de dados. A ideia é apenas armazenas os estados em um array de players. Isso significa que no momento em que o servidor descer, todas as informações de score, users e sockets serão perdidas.</p>
 <p>Hoje irei apenas criar uma base simples de conexões, para que nos próximos artigos eu possa implementar realmente a lógica do jogo. Essa base contém somente o socket.io e o servidor web rodando. As features iniciais são, portanto:</p>
 <ul>
@@ -159,32 +161,32 @@
 </ul>
 <p>Antes de desenvolver estas features, vejamos como funciona o Pig Dice:</p>
 <h2 id="Pig-Dice"><a href="#Pig-Dice" class="headerlink" title="Pig Dice"></a>Pig Dice</h2><p>Um jogo de dados para <strong>duas</strong> pessoas. Cada jogador deve acumular a maior quantidade de pontos possíveis. Os pontos são determinados pelo resultado de cada rodada e cada participante joga uma rodada de cada vez. O primeiro inicia a primeira rodada jogando um dado. Se o número que saiu no dado for 1, o jogador não acumula nenhum ponto e passa a vez para o próximo; se for diferente de 1, ele pode jogar o dado novamente e ir acumulando os pontos na rodada atual. Desde que não caia 1, o jogador pode decidir se para ou continua jogando e acumulando mais pontos (com a possibilidade de tirar 1 e não ganhar nada na rodada). Se escolher parar, os pontos da rodada somam-se aos seus pontos totais. Ganha o jogo o primeiro jogador que fizer 100 ou mais pontos.</p>
-<p>Se a explicação não ficou muito clara, recomendo ler sobre o jogo no Wikipédia: <a href="https://goo.gl/C5iXdo" target="_blank" rel="external">Pig Dice</a></p>
-<h2 id="Codigo-no-GitHub"><a href="#Codigo-no-GitHub" class="headerlink" title="Código no GitHub"></a>Código no GitHub</h2><p>O código da aplicação completa, ou seja, que será incrementada a cada artigo está disponível <a href="https://github.com/mrmorais/pig_web_dice" target="_blank" rel="external">neste link para o GitHub</a>. No entanto, para haver um sentido atemporal na leitura dos artigos, cada novo código desta série estará no repositório <a href="https://github.com/mrmorais/tutoriais" target="_blank" rel="external">mrmorais/tutoriais</a>!</p>
-<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p><a href="http://mrmorais.com.br/2017/03/23/ecmascript-6-e-como-usar/" target="_blank" rel="external">Neste artigo</a> eu ensino como montar um setup ideal para Node JS com ES6, recomendo que antes de começar o desenvolvimento você o leia e monte o cenário necessário.</p>
+<p>Se a explicação não ficou muito clara, recomendo ler sobre o jogo no Wikipédia: <a href="https://goo.gl/C5iXdo" target="_blank" rel="noopener">Pig Dice</a></p>
+<h2 id="Codigo-no-GitHub"><a href="#Codigo-no-GitHub" class="headerlink" title="Código no GitHub"></a>Código no GitHub</h2><p>O código da aplicação completa, ou seja, que será incrementada a cada artigo está disponível <a href="https://github.com/mrmorais/pig_web_dice" target="_blank" rel="noopener">neste link para o GitHub</a>. No entanto, para haver um sentido atemporal na leitura dos artigos, cada novo código desta série estará no repositório <a href="https://github.com/mrmorais/tutoriais" target="_blank" rel="noopener">mrmorais/tutoriais</a>!</p>
+<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p><a href="http://mrmorais.com.br/2017/03/23/ecmascript-6-e-como-usar/" target="_blank" rel="noopener">Neste artigo</a> eu ensino como montar um setup ideal para Node JS com ES6, recomendo que antes de começar o desenvolvimento você o leia e monte o cenário necessário.</p>
 <p>Crie um arquivo <code>app.js</code> na raiz do seu projeto, e vamos inicializa-lo para termos um servidor simples rodando.</p>
 <blockquote>
 <p>Note: se você não inicializou corretamente o setup necessário (NPM + Babel), nenhum código a seguir deverá funcionar. </p>
 </blockquote>
-<p><strong>{path}/app.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'http'</span>;</div><div class="line"><span class="keyword">import</span> socketIo <span class="keyword">from</span> <span class="string">'socket.io'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"><span class="keyword">const</span> server = http.createServer(app);</div><div class="line"><span class="keyword">const</span> io = socketIo(server);</div><div class="line"></div><div class="line">app.listen(<span class="number">8080</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>{path}/app.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'http'</span>;</span><br><span class="line"><span class="keyword">import</span> socketIo <span class="keyword">from</span> <span class="string">'socket.io'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(app);</span><br><span class="line"><span class="keyword">const</span> io = socketIo(server);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure></p>
 <p>Importamos o <code>express</code>, framework web para Node que, neste momento, utilizaremos para entregar uma página HTML simples. Além disso também importamos o <code>http</code> que proverá o nosso servidor na porta 8080. E, obviamente, importamos o <code>socket.io</code> que será a base para a comunicação <em>event-based</em>.</p>
 <p>Depois das importações, criei uma instância de express na <code>const app</code>. E passei esse app para ser servidor no <code>const server</code> que é criado na mesma linha de inicialização com o método <code>createServer</code> do <code>http</code>. Por fim, criamos uma instância do <code>socketIo</code> dizendo pra ele qual o servidor em que a comunicação com os usuários será estabelecida.</p>
 <p>Não menos importante dizemos com o método <code>app.listen()</code> que o app deve escutar a porta 8080 e responder às requisições dela.</p>
-<p>Com essas inicializações feitas, devemos pensar agora no gerenciamento dos usuários e fazer o controle das conexões. Como disse anteriormente, não vamos utilizar persistência em banco de dados, vamos armazenar as informações dos usuários em um array. Quanto ao controle, será feito pelo <code>io</code> que vai receber eventos e tratá-los. Para implementar isso, depois das inicializações (app, server, io) adicione o seguinte código:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> guests = [];</div><div class="line"><span class="keyword">let</span> id_counter = <span class="number">0</span>;</div><div class="line"></div><div class="line">io.on(<span class="string">'connection'</span>, (socket) =&gt; &#123;</div><div class="line">  <span class="keyword">let</span> _guest = &#123; <span class="attr">id</span>: id_counter++, <span class="attr">name</span>: <span class="string">"mickey mouse"</span>, <span class="attr">score</span>: <span class="number">0</span>&#125;;</div><div class="line">  guests.push(_guest);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; New guest called <span class="subst">$&#123;_guest.name&#125;</span>`</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; There are <span class="subst">$&#123;guests.length&#125;</span> guests online`</span>);</div><div class="line"></div><div class="line">  socket.on(<span class="string">'disconnect'</span>, (data) =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> index = guests.indexOf(_guest);</div><div class="line">    <span class="keyword">if</span> (index &gt; <span class="number">-1</span>) &#123;</div><div class="line">      guests.splice(index, <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; <span class="subst">$&#123;_guest.name&#125;</span> disconnected`</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; There are <span class="subst">$&#123;guests.length&#125;</span> guests online`</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Com essas inicializações feitas, devemos pensar agora no gerenciamento dos usuários e fazer o controle das conexões. Como disse anteriormente, não vamos utilizar persistência em banco de dados, vamos armazenar as informações dos usuários em um array. Quanto ao controle, será feito pelo <code>io</code> que vai receber eventos e tratá-los. Para implementar isso, depois das inicializações (app, server, io) adicione o seguinte código:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> guests = [];</span><br><span class="line"><span class="keyword">let</span> id_counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, (socket) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> _guest = &#123; <span class="attr">id</span>: id_counter++, <span class="attr">name</span>: <span class="string">"mickey mouse"</span>, <span class="attr">score</span>: <span class="number">0</span>&#125;;</span><br><span class="line">  guests.push(_guest);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; New guest called <span class="subst">$&#123;_guest.name&#125;</span>`</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; There are <span class="subst">$&#123;guests.length&#125;</span> guests online`</span>);</span><br><span class="line"></span><br><span class="line">  socket.on(<span class="string">'disconnect'</span>, (data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> index = guests.indexOf(_guest);</span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">      guests.splice(index, <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; <span class="subst">$&#123;_guest.name&#125;</span> disconnected`</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`&gt;&gt; There are <span class="subst">$&#123;guests.length&#125;</span> guests online`</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Vamos ver o que aconteceu aqui. Criamos um array chamado <code>guests</code> vazio, que receberá nossos jogadores. E também criamos um contador <code>id_counter</code> que irá ajudar na hora de identificar usuários.</p>
 <p>A função <code>io.on</code> cria um listener para eventos lançados no socket. O primeiro argumento, neste caso <code>&#39;connection&#39;</code> indica o nome do evento que queremos tratar; o segundo argumento é uma função de callback. Aqui estamos utilizando a notação arrow function exclusiva do ES6. Um evento retorna para a gente um <code>socket</code> que é por onde nós iremos enviar e receber mensagens do usuário atrelado àquela conexão.</p>
 <p>É simples entender: <code>socket</code> e <code>io</code> possuem o mesmo tipo de objeto, mas o <code>socket</code> lhe permite enviar e receber apenas de um usuário específico; o <code>io</code> permite fazer isso com todos os usuários conectados ao mesmo tempo. Veremos mais disso posteriormente.</p>
 <p>Quando recebemos uma conexão, ou seja, um evento <code>&#39;connection&#39;</code> é lançado, ou seja, quando a função de callback é chamada, nós criamos um objeto para o usuário que se conectou.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> _guest = &#123; <span class="attr">id</span>: id_counter++, <span class="attr">name</span>: <span class="string">"mickey mouse"</span>, <span class="attr">score</span>: <span class="number">0</span>&#125;;</div><div class="line">guests.push(_guest);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _guest = &#123; <span class="attr">id</span>: id_counter++, <span class="attr">name</span>: <span class="string">"mickey mouse"</span>, <span class="attr">score</span>: <span class="number">0</span>&#125;;</span><br><span class="line">guests.push(_guest);</span><br></pre></td></tr></table></figure>
 <p>Perceba que <code>&quot;mickey mouse&quot;</code> será o nome genérico para todos os usuários e que quando setamos o id do usuário como <code>id_counter</code> também fazemos um incremento no <code>id_counter</code>, para que o próximo usuário adicionado tenha esse valor atualizado. Depois de criado, adicionamos o novo usuário à <code>guests</code> com o método <code>push()</code>. Depois de adicionado “logamos” a informação de que um novo usuário se conectou e quantos usuários estão online.</p>
 <p>Adicionamos um novo listener, dessa vez é dentro do callback do <code>&#39;connection&#39;</code> e no lugar de usar o <code>io</code> estamos usando o <code>socket</code>. Lembre-se: <code>io</code> representa todos e o <code>socket</code> representa o atual.</p>
 <p>O novo listener atende ao evento <code>&#39;disconnect&#39;</code> que, por acaso, é lançado quando o usuário conectado fecha a janela do browser, ou fica sem internet, ou infinitésimas coisas que podem ocasionar esse evento. Esse evento é importante para organizar-mos a lista de usuários onlines, se ele estariamos estocando apenas registro de usuários que passaram pelo site.</p>
 <p>Dentro do callback para <code>&#39;disconnect&#39;</code> buscamos no array qual o índice do guest que desconectou, com a linha</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> index = guests.indexOf(_guest);</div></pre></td></tr></table></figure>
-<p>e depois retiramos o guest do <code>guests</code>, com o <code>splice()</code>, esse método faz um shift-left no array. Ou seja, pega todos os elementos a partir de certo <code>index+1</code> e sobre escreve o valor deles nas <code>n</code> casas à esquerda, aqui <code>n</code> é <code>1</code>. (<a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank" rel="external">mais sobre splice</a>)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> index = guests.indexOf(_guest);</span><br></pre></td></tr></table></figure>
+<p>e depois retiramos o guest do <code>guests</code>, com o <code>splice()</code>, esse método faz um shift-left no array. Ou seja, pega todos os elementos a partir de certo <code>index+1</code> e sobre escreve o valor deles nas <code>n</code> casas à esquerda, aqui <code>n</code> é <code>1</code>. (<a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank" rel="noopener">mais sobre splice</a>)</p>
 <p>Esta foi uma aplicação simples, do lado do servidor, com um socket.io para receber, manejar conexões e “desconexões”. O fluxo em sockets é essencialmente este: emitir (ainda não foi abordado) e receber dados e fluxos de dados.</p>
 <p>Na próxima parte deste artigo, iremos desenvolver a aplicação do lado do cliente e veremos quais serão as implicações para o lado do servidor. Perceba que ainda não estamos enviando nada para o cliente, apenas recebendo.</p>
-<p>Espero que este artigo tenha lhe sido útil. Vejo você no próximo. Lembre-se que os códigos deste artigo estão <a href="https://github.com/mrmorais/tutoriais" target="_blank" rel="external">neste repositório do GitHub</a></p>
+<p>Espero que este artigo tenha lhe sido útil. Vejo você no próximo. Lembre-se que os códigos deste artigo estão <a href="https://github.com/mrmorais/tutoriais" target="_blank" rel="noopener">neste repositório do GitHub</a></p>
 
   </div>
 </article>
@@ -203,9 +205,9 @@
          
           <li><a href="/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Artigos</a></li>
          
-          <li><a href="http://github.com/mrmorais">Projects</a></li>
+          <li><a href="http://github.com/mrmorais">Projetos</a></li>
         
       </ul>
     </div>
@@ -232,10 +234,10 @@
 
     <div id="actions-footer">
       <ul>
-        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
-        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="toc"><a class="icon" href="#" onclick="$("#toc-footer").toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$("#share-footer").toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
         <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
-        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$("#nav-footer").toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
       </ul>
     </div>
 
@@ -245,7 +247,7 @@
     
     <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2017 Maradona Morais
+    Copyright &copy; 2019 Maradona Morais
   </div>
   <div class="footer-right">
     <nav>
@@ -255,9 +257,9 @@
          
           <li><a href="/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Artigos</a></li>
          
-          <li><a href="http://github.com/mrmorais">Projects</a></li>
+          <li><a href="http://github.com/mrmorais">Projetos</a></li>
         
       </ul>
     </nav>
