@@ -11,7 +11,7 @@
 
     <title>
         
-          Maradona Morais
+          Web Scraping com produtos da Submarino.com - Maradona Morais
         
     </title>
 
@@ -92,41 +92,76 @@
 
       <div class="column col-8 col-lg-12">
         <div class="book-content">
-          <div class="book-archive">
-  <!-- Title -->
-  
-    <h2>Tags</h2>
-  
+          <div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-center">
+    Maradona Morais
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
 
-  
-    <!-- Split post by year -->
-    
-  
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2017
+<ul>
+<li>Março
+<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016
+<ul>
+<li>Maio
+<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-  
-      <div class="book-archive-years">
-          <ul class="archive-list-item">
-          
-              <li>
-                <span>2017-03-23</span>
-                <a href="/ecmascript-6-e-como-usar/">
-                  ECMAScript 6 e como usar
-                </a>
-              </li>
-          
-              <li>
-                <span>2017-03-22</span>
-                <a href="/Aplicacao-real-time-com-socket-io-pt-1/">
-                  Aplicação real-time com socket.io (parte 1)
-                </a>
-              </li>
-          
-          </ul>
-      </div>
-  
-
-  
+  </div>
 </div>
+</div>
+
+<div class="book-post">
+  <h1 id="web-scraping-com-produtos-da-submarino-com">Web Scraping com produtos da <a href="http://Submarino.com" target="_blank" rel="noopener">Submarino.com</a></h1>
+<p>17 de maio de 2016</p>
+<p><img src="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg" alt="Logomarca da Submarino"></p>
+<p>Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto como objeto.</p>
+<p>Web Scraping é uma técnica bastante simples e muito utilizada pelos robôs da Google, que buscam e qualificam conteúdos na internet para serem buscados pelo navegador. Esta técnica consiste em ler todo o HTML de uma determinada página, como se fosse interpretá-la. Parecido com o que fazem os leitores de tela.</p>
+<p>Pois bem, com Web Scraping é possível realizar a obtenção de dados de qualquer tipo de página e com produtos esta regra torna-se bem mais simples já que sempre existe uma pré-disposição dos elementos de uma página, o que nós chamamos de <em>layout</em>. Portanto, o meu algoritmo sabe qual o <em>layout</em> das paginas de produtos da Submarino e, com isso, ele consegue ler as informações de quase todos os produtos.</p>
+<p>Eu acabei de disponibilizar o pacote desta simples aplicação (ao abrir, você verá que é realmente simples) e está disponível no NPM com o nome <strong>submarino-scrap</strong> (<a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="noopener">acessar</a>)</p>
+<h4 id="por-quê">Por quê?</h4>
+<p>A aplicação deste simples algoritmo pode ser útil em diversas coisas. A primeira coisa que deve ser notada é que nenhuma empresa possui uma API pública de seus produtos, mesmo que estas informações possam ser de interesse para diversas aplicações.</p>
+<p>Fazer uma API pública destas informações permitiria o desenvolvimento de diversas aplicações legais (e abertas) que façam por exemplo a monitoria da variação dos preços dos produtos (ver como funciona a “Black Friday”), base estatística, mineração de dados, etc.</p>
+<p>A ideia é fazer e disponibilizar um web scraping para cada grande e-commerce da internet e por fim criar um pacote que integre todos os demais e que faça a leitura de produtos da maioria dos sites de venda do Brasil.</p>
+<p>Não irei fazer tutorial deste pacote aqui no sie, uma exemplo prático já se encontra na <a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="noopener">página do NPM</a> e você pode conferir lá. Nos próximos dias estarei criando os novos “scraps” e também disponibilizando um repositório no GitHub para que mais pessoas possam se tornar contribuidoras.</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/js/book-post.js"></script>
         </div>
       </div>
 
