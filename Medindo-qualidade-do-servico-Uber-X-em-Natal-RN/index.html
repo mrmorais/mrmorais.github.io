@@ -11,7 +11,7 @@
 
     <title>
         
-          Scraprice - API de monitoramento de preços - Maradona Morais
+          Medindo qualidade do serviço Uber X em Natal/RN - Maradona Morais
         
     </title>
 
@@ -158,14 +158,23 @@
 </div>
 
 <div class="book-post">
-  <h1 id="scraprice-api-de-monitoramento-de-preços">Scraprice - API de monitoramento de preços</h1>
-<p>21 de maio de 2016</p>
-<p>Na postagem anterior apresentei um módulo NPM que faz WebScraping com produtos da loja Submarino e “converte” o link do produto em informações do produto.</p>
-<p>Utilizando este módulo que desenvolvi, criei um site com Node, Angular e Express usando um banco de dados MongoDB e eis o resultado: Scraprice. Esta ferramenta faz algo bastante simples: além de fazer o scraping e armazenar os dados, ele diariamente roda um script que busca o preço do produto e coloca em uma array de todos os preços já computados. Nada diferente do que é feito, por exemplo, no Zoom ou Buscapé.</p>
-<p>Por enquanto a API ainda não está documentada e o código ainda não está no GitHub.</p>
-<p><a href="http://scraprice-mrmorais.rhcloud.com/" target="_blank" rel="noopener">Acessar o Scraprice</a></p>
-<p>A aplicação está hospedada com <a href="https://openshift.redhat.com" target="_blank" rel="noopener">Open Shift / Red Hat Cloud</a>, com 1GB de espaço. E o banco de dados está no <a href="http://mlab.com/" target="_blank" rel="noopener">MLab</a>, 500MB.</p>
-<p><img src="http://i.imgur.com/UUynpp0.png" alt=""></p>
+  <h1 id="medindo-qualidade-do-serviço-uber-x-em-natal-rn">Medindo qualidade do serviço Uber X em Natal/RN</h1>
+<p>23 de setembro de 2017</p>
+<p>Em março 2016 o The Washington Post lançou uma <a href="https://www.washingtonpost.com/news/wonk/wp/2016/03/10/uber-seems-to-offer-better-service-in-areas-with-more-white-people-that-raises-some-tough-questions/?utm_term=.21414a6a4db8" target="_blank" rel="noopener">matéria super interessante</a> da jornalista computacional Jennifer Stark e do professor Nicholas Diakopoulos. A reportagem indagava que o Uber em Los Angeles aparenta ter um serviço melhor em áreas com mais pessoas brancas, e para chegar a esta conclusão eles consumiram durante um mês a API pública do Uber e mediram a qualidade do serviço em todos os bairros.</p>
+<p>A ideia é bastante simples: foi utilizado como indicador de qualidade o tempo (estimado pelo aplicativo) que um motorista levaria para chegar até o local em que o cliente se encontra, esta informação pode ser obtida pela <a href="https://developer.uber.com/docs/riders/ride-requests/tutorials/api/python" target="_blank" rel="noopener">API do Uber</a>. Então, basta mapear diversos pontos distribuidos por toda cidade e periodicamente armazenar os tempos estimados. Depois é só analizar os dados obtidos com ferramentas adequadas.</p>
+<p>Este foi o resultado do estudo do The Washington Post:</p>
+<p><img src="https://img.washingtonpost.com/wp-apps/imrs.php?src=https://img.washingtonpost.com/blogs/wonkblog/files/2016/03/uber1.png&amp;w=1484" alt=""></p>
+<p>Em 26 de agosto deste ano (2017) fez um ano desde que o Uber passou a operar em Natal/RN. Motivados pela <a href="https://www.facebook.com/fmasanori/posts/10214024510345174" target="_blank" rel="noopener">notícia compartilhada pelo professor Fernando Masanori</a>, eu e meu colega Daniel Marx decidimos explorar um pouco da API Uber e reproduzir o que Jennifer e Nicholas fizeram com os dados do Uber em Los Angeles.</p>
+<h2 id="mapeando-a-cidade">Mapeando a cidade</h2>
+<p>A primeira informação importante para este estudo é as localizações e bairros que deverão ter as estimativas de espera rastreadas. Então, mapeamos diversos pontos na cidade de Natal, um total de 86 localidades – Natal tem 36 bairros, cada bairro teve entre 2 e 3 localidades mapeadas dependendo do tamanho do bairro.</p>
+<p>Por engano, o bairro Nova Parnamirim não foi mapeado</p>
+<p>Este é o mapa de localidades construído:</p>
+<p><img src="https://github.com/mrmorais/uber-map-natal/blob/master/imgs/pontos_mapeados.png?raw=true" alt=""></p>
+<p>As coordenadas (latitude e longitude) dos pontos mapeados foram armazenadas em uma estrutura de dados para leitura pelo script de requisições. Observe que os pontos foram escolhidos aleatoriamente – o trabalho do The Washington Post faz uma seleção uniforme dos pontos (ou seja, todos pontos têm uma mesma distancia dos pontos adjacentes).</p>
+<h2 id="executando-as-requisições">Executando as requisições</h2>
+<p>Foi criado um script em Python que a cada 3 minutos faz 86 requisições (uma para cada localidade) à API do Uber, e salva os tempos estimados retornados pela API em um arquivo, para analise posterior. Esse script ficou em execução durante 5 dias (entre 14 e 19 de setembro) tendo efetuado quase 157 mil requisições.</p>
+<h2 id="resultado">Resultado</h2>
+<p>O tratamento posterior dos dados que fizemos foi efetuar uma média, por bairro, do tempo de estimativa de espera. Por fim, representamos as médias obtidas em um mapa e chegamos a este resultado:&lt;</p>
 
 </div>
 
