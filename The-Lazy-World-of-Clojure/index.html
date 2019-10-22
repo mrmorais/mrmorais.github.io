@@ -11,7 +11,7 @@
 
     <title>
         
-          Web Scraping com produtos da Submarino.com - Maradona Morais
+          (English) The Lazy World of Clojure - Maradona Morais
         
     </title>
 
@@ -180,18 +180,23 @@
 </div>
 
 <div class="book-post">
-  <h1 id="web-scraping-com-produtos-da-submarino-com">Web Scraping com produtos da <a href="http://Submarino.com" target="_blank" rel="noopener">Submarino.com</a></h1>
-<p>17 de maio de 2016</p>
-<p><img src="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg" alt="Logomarca da Submarino"></p>
-<p>Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto como objeto.</p>
-<p>Web Scraping é uma técnica bastante simples e muito utilizada pelos robôs da Google, que buscam e qualificam conteúdos na internet para serem buscados pelo navegador. Esta técnica consiste em ler todo o HTML de uma determinada página, como se fosse interpretá-la. Parecido com o que fazem os leitores de tela.</p>
-<p>Pois bem, com Web Scraping é possível realizar a obtenção de dados de qualquer tipo de página e com produtos esta regra torna-se bem mais simples já que sempre existe uma pré-disposição dos elementos de uma página, o que nós chamamos de <em>layout</em>. Portanto, o meu algoritmo sabe qual o <em>layout</em> das paginas de produtos da Submarino e, com isso, ele consegue ler as informações de quase todos os produtos.</p>
-<p>Eu acabei de disponibilizar o pacote desta simples aplicação (ao abrir, você verá que é realmente simples) e está disponível no NPM com o nome <strong>submarino-scrap</strong> (<a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="noopener">acessar</a>)</p>
-<h4 id="por-quê">Por quê?</h4>
-<p>A aplicação deste simples algoritmo pode ser útil em diversas coisas. A primeira coisa que deve ser notada é que nenhuma empresa possui uma API pública de seus produtos, mesmo que estas informações possam ser de interesse para diversas aplicações.</p>
-<p>Fazer uma API pública destas informações permitiria o desenvolvimento de diversas aplicações legais (e abertas) que façam por exemplo a monitoria da variação dos preços dos produtos (ver como funciona a “Black Friday”), base estatística, mineração de dados, etc.</p>
-<p>A ideia é fazer e disponibilizar um web scraping para cada grande e-commerce da internet e por fim criar um pacote que integre todos os demais e que faça a leitura de produtos da maioria dos sites de venda do Brasil.</p>
-<p>Não irei fazer tutorial deste pacote aqui no sie, uma exemplo prático já se encontra na <a href="https://www.npmjs.com/package/submarino-scrap" target="_blank" rel="noopener">página do NPM</a> e você pode conferir lá. Nos próximos dias estarei criando os novos “scraps” e também disponibilizando um repositório no GitHub para que mais pessoas possam se tornar contribuidoras.</p>
+  <h1 id="english-the-lazy-world-of-clojure">(English) The Lazy World of Clojure</h1>
+<p>08 de outubro de 2019</p>
+<p>In functional programming context laziness means delaying the execution of a code or, putting in other words: you only compute (realize) a code when you need the result.</p>
+<p>Clojure is not a lazy language (like Haskell is) but it supports lazily evaluated sequences and most core functions uses lazy-seq under the hood, so if you’re programming in Clojure you’re using lazy-seq (as we’ll gonna call it from now.)</p>
+<p>There are some benefits of using lazy-seq: the first one is that we can represent infinite sequences (fibonacci, odd and even, prime numbers.) Another good reason to use lazy-seqs is that it does caching and thunking with the results, as we’ll see next.</p>
+<p>A good way to think is that a lazy-seq only stores a recipe and a state of the sequence, so it don’t have to perform all of them. It’s very close to how functions works. Until a function got called the body is not evaluated, even because it only have the recipe but the ingredients (the parameters) are arriving yet.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(def ten (+ 5 5)) ; is evaluated on execution</span><br><span class="line">(defn ten [] (+ 5 5)) ; body is evaluated later</span><br></pre></td></tr></table></figure>
+<p>In the first example, the sum must be evaluated what is not true for the second one.</p>
+<p>Let’s get into lazy-seq by Fibonacci’s sequence example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(defn fib</span><br><span class="line">  ([] (fib 0 1))]</span><br><span class="line">  ([x y] (lazy-seq (cons x (fib y (+ x y))))))</span><br></pre></td></tr></table></figure>
+<p>The lazy-seq forces to postpone the evaluation of <code>cons</code>. <code>cons</code> returns a seq where the first param is the first element and the second param is the rest. For instance:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(cons 1 [2 3])</span><br><span class="line">; (1 2 3)</span><br></pre></td></tr></table></figure>
+<p>So, while taking our fibonacci sequence it would calculate far as necessary instead perform all recurrences (what may take a while). A interesting experience is to add a Thread/sleep to that fib function to see how lazy-seq caches the results.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(defn fib</span><br><span class="line">  ([] (fib 0 1))</span><br><span class="line">  ([x y] (Thread/sleep 1000) (lazy-seq (cons x (fib y (+ x y))))))</span><br></pre></td></tr></table></figure>
+<p>You’ll notice that at the first time it will take the n * 1000 milliseconds to respond, but when call it again it will be immediate.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(def a (fib))</span><br><span class="line">user =&gt; (take 10 a)</span><br><span class="line">; (0 1 1 2 3 5 8 13 21 34) - 10 seconds after...</span><br><span class="line">user =&gt; (take 10 a)</span><br><span class="line">; (0 1 1 2 3 5 8 13 21 34) - immediately</span><br></pre></td></tr></table></figure>
+<p>Lazy-seq is a very useful Clojure feature, there’s certainly a lot more to read and learn about it, but for now I hope that you enjoyed what I had to talk about this subject.</p>
 
 
   <hr>
