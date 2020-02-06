@@ -11,7 +11,7 @@
 
     <title>
         
-          Maradona Morais
+          Automatização de estratégias de Trading com Ichimoku Cloud - Maradona Morais
         
     </title>
 
@@ -274,100 +274,26 @@
 </div>
 
 <div class="book-post">
-  <ul>
-<li><a href="/">Home</a></li>
-<li><a href="/about">Sobre</a></li>
-<li>2020
-<ul>
-<li>Fevereiro
-<ul>
-<li><a href="/automatizacao-de-estrategias-de-trading-com-ichimoku-cloud">Automatização de estratégias de Trading com Ichimoku Cloud</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>2019
-<ul>
-<li>Outubro
-<ul>
-<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
-<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>2017
-<ul>
-<li>Março
-<ul>
-<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
-<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
-</ul>
-</li>
-<li>Junho
-<ul>
-<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
-</ul>
-</li>
-<li>Setembro
-<ul>
-<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal/RN</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>2016
-<ul>
-<li>Maio
-<ul>
-<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
-<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
-<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<small>
-<a rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a>
-</small>
-<br>
-<style type="text/css" media="screen">
-  .gr_grid_container {
-    /* customize grid container div here. eg: width: 500px; */
-  }
+  <h1 id="automatização-de-estratégias-de-trading-com-ichimoku-cloud">Automatização de estratégias de Trading com Ichimoku Cloud</h1>
+<p>6 de fevereiro de 2020</p>
+<p>Há alguns dias venho trabalhando nessa ideia de criar automações com o sistema de indicadores Ichimoku, até aqui tenho criado somente a base da estrutura necessária para criar estratégias mais elaboradas, mas que acredito ser um bom ponto inicial.</p>
+<p>Caso não saiba sobre o que estou falando, trata-se de um sistema de indicadores usados na análise técnica de ativos financeiros para, digamos, “prever” bons momentos de compra e venda de ações, por exemplo – Ichimoku, em verdade, é bem desconhecido atualmente entre especuladores. É um sistema desenvolvido na década de 30 por um jornalista japonês.</p>
+<p>O que aqui nos interessa é o funcionamento destes indicadores e como lê-los para criar um método automatizado de compra e venda de ações com eles. Para isso precisei reproduzir o Ichimoku com o dataset históricos de cotações da bolsa brasileira. Por fim, pude averiguar se a estratégia que havia definido é boa – boa, no momento, será performar acima do Ibovespa. Se sair melhor que a taxa básica de juros já é alguma coisa.</p>
+<p>Adianto aqui os resultados obtidos. Rodei a estratégia, que vou explicar mais à frente e obti, em média, 15% de rendimento resultante. A carteira usada foi a mesma do Ibovespa com as mesmas ponderações. Em 2018 (ano que usei como base), 15% também foi o resultado do Ibov, portanto não dá para considerar que em “bati o índice.” Como verá adiante, a estratégia é tão simples que acaba por ser um tanto quanto significante ao meu ver. Em 2018 a SELIC foi de 6,4%.</p>
+<p>Não vou adentrar no significado dos indicadores Ichimoku. Tudo o que aprendi sobre este sistema foi através do livro “How To Make Money Trading the Ichimoku System” que apesar do título “apelativo” contém bom conteúdo sobre o sistema. Caso se interesse recomendo estudar um pouco sobre o assunto e sobre outros temas de análise técnica. Adianto que, na minha opinião, este tipo de análise não deve ser um primeiro passo no mercado financeiro.</p>
+<p>Apesar de não ser necessário entender o que mostra este gráfico do Ichimoku com a cotação de PETR4, esbocei aí tais indicadores.</p>
+<p><img src="/images/ichi-cloud-petr4.png" alt="Gráfico com cotação do PETR4 e Sistema Ichimoku"></p>
+<p>Tudo o que estou a descrever está com melhor, em código, legibilidade e disponível <a href="https://github.com/mrmorais/mrmorais.github.io/blob/master/others/notebooks/Ichimoku%20-%20Buy%20Above%20Cloud.ipynb" target="_blank" rel="noopener">neste notebook</a>. Se você estudar o sistema Ichimoku, conhecerá os 5 indicadores e aprenderá que a relação entre eles dão sinais de tendências e força do mercado. A estratégia mais básica, talvez a primeira do livro mencionado sobre o tema, é que a tendência no preço do ativo é interpretada pela “nuvem” – uma região formada por dois indicadores Senkou A e B. Na figura acima seria a região entre a linha verde e vermelha.</p>
+<p>Se o preço está acima da nuvem a tendência é de alta; se está abaixo, de baixa. Esta foi a estratégia que implementei com uma simples linha de código – reproduzir o Ichimoku com a biblioteca Pandas foi uma tarefa muito simples como verá analisando o código.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prices_above_cloud</span><span class="params">(df, ichimoku)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> df[(df.preco_fechamento &gt; ichimoku[<span class="string">'senkou_a'</span>]) &amp; (df.preco_fechamento &gt; ichimoku[<span class="string">'senkou_b'</span>])]</span><br></pre></td></tr></table></figure>
+<p>Isso apenas é necessário para me dizer em quais períodos a cotação do ativo esteve acima da nuvem de Ichimoku. Veja que só me interessei em encontrar as tendências altistas. A figura abaixo exemplifica com a PETR4 os momentos em que a ação esteve acima da nuvem.</p>
+<p><img src="/images/ichi-cloud-petr4-above-cloud.png" alt=""></p>
+<p>É conhecimento básico de mercado financeiro que uma tendência de alta ou de baixa se manterá de tal forma até que ocorra uma reversão da mesma – apesar de que muitos especuladores desconsideram esta informação tão simples. Então, a estratégia aqui é igualmente simples: <strong>no primeiro dia em que a cotação estiver acima da nuvem comprarei (hipoteticamente) o ativo</strong>. Quando ficar abaixo ou dentro da nuvem, venderei a posição que teria.</p>
+<p>Como mencionei no início, o rendimento de uma carteira hipotética espelhada no Ibovespa foi de 15% o mesmo que performou o Ibovespa no ano em questão, 2018. Em breve estarei implementando outras estratégias envolvendo tais indicadores e em busca de um resultado melhor que 15%, que ainda é consideravelmente tímido.</p>
+<p>Existem ainda muitas variáveis que distanciam este teste de um cenário real, como é o exemplo de stop loss. As próprias estratégias Ichimoku têm formas de definir um stop loss dinâmico, por exemplo. Mas dinâmico ou não, é imprescindível que uma estratégia de trading tenha um ponto de saída para as operações.</p>
+<p>Se se interessou pelo tema, sugiro ver o notebook que fiz com o código utilizado neste artigo (<a href="https://github.com/mrmorais/mrmorais.github.io/blob/master/others/notebooks/Ichimoku%20-%20Buy%20Above%20Cloud.ipynb" target="_blank" rel="noopener">neste endereço</a>) e continuar a acompanhar este site para publicações futuras. É de meu interesse continuar publicações acerca do tema investimento e mercado financeiro e, portanto, estarei me esforçando em testar métodos e escrever sobre estas experiências aqui.</p>
+<p><strong>Dica importante</strong>: O dataset que utilizei foi disponibilizado pela B3, atualmente não se encontra mais disponível (havia armazenado o dataset em 2019). No entanto, se costuma trabalhar com Python – o que é praxe em iniciação à ciência de dados – existe a biblioteca <a href="https://pypi.org/project/fix-yahoo-finance/" target="_blank" rel="noopener"><code>yfinance</code></a>, que extrai datasets históricos do Yahoo Finance, e contém sim tickets de ativos da bolsa brasileira (você deve pesquisar no site do Yahoo Finance o ticket correto.)</p>
 
-  #gr_grid_widget_1580141760 {
-    margin-top: 10px;
-  }
-
-  #gr_grid_widget_1580141760 h2 {
-    font-size: 16pt;
-  }
-
-  .gr_grid_book_container {
-    /* customize book cover container div here */
-    float: left;
-    width: 39px;
-    height: 60px;
-    padding: 0px 0px;
-    overflow: hidden;
-  }
-</style>
-<div id="gr_grid_widget_1580141760">
-  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
-  <h2 style="font-size:16pt">
-    <a style="text-decoration: none;" rel="noopener" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget" target="_blank">Maradona's currently-reading book montage</a>
-  </h2>
-  <div class="gr_grid_container">
-    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="noopener" href="https://www.goodreads.com/book/show/15731837-get-lio" target="_blank"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg"></a></div>
-    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="noopener" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you" target="_blank"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg"></a></div>
-    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="noopener" href="https://www.goodreads.com/book/show/34372564-microservice-patterns" target="_blank"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg"></a></div>
-    <br style="clear: both"><br><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="noopener" href="https://www.goodreads.com/user/show/109108590-maradona-morais" target="_blank">Maradona Morais's favorite books »</a>
-  <noscript><br>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
-  </div>
-</div>
-<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
 
   <hr>
   <p>Este trabalho está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.</p>
