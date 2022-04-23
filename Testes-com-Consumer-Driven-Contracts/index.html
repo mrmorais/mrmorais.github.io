@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+
+    <title>
+        
+          Testes com Consumer-Driven Contracts - Maradona Morais
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/">Maradona Morais</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+
+
+<script src="/js/book-sidebar.js"></script>
+
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          <div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-center">
+    Maradona Morais
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+  <h1 id="Testes-com-Consumer-Driven-Contracts"><a href="#Testes-com-Consumer-Driven-Contracts" class="headerlink" title="Testes com Consumer-Driven Contracts"></a>Testes com Consumer-Driven Contracts</h1><p>22 de outubro de 2019</p>
+<p>No desenvolvimento de micro-serviços, por exemplo, é importante a existência de uma cultura de princípios guiando o processo de desenvolvimento. Um destes princípios é a <strong>descentralização</strong>: todos os times deve possuir controle e liberdade sobre seus serviços (desde o provisionamento de recursos ao deploy independente). Um ponto importante para garantir descentralização é a coordenação entre serviços, que devem ser o mais desacoplados possível. Um serviço deve responder de forma consistente para que outros serviços possam utilizá-lo apropriadamente, mas em ambientes de constantes modificações esta coordenação entre equipes pode ser falível e demandar testes de integração complexos de e2e (<em>end-to-end</em>).</p>
+<details>
+<summary>Definição de testes e2e</summary>
+Testes e2e (de ponta a ponta) são testes de mais alto nível e que exigem ambiente com todo o sistema (ou uma parte) em execução, eficaz em testar lógicas de negócios pensando no usuário.<br/>
+</details><br/>
+
+<p>Como é possível ter a segurança de que serviços inter-dependentes não sejam negativamente impactados com mudanças? Esta é a proposta dos testes baseados em contratos com consumidores (ou <strong>Consumer-Driven Contracts</strong>). Este padrão garante a consistência nos relacionamentos entre aplicações ao efetuar testes nas APIs impondo a conformidade com um contrato que é estabelecido pelas expectativas das aplicações que consomem as APIs.</p>
+<p>Logo, temos dois tipos de aplicações envolvidas:</p>
+<ul>
+<li><strong>Consumidor</strong> (<em>consumer</em>): aplicação que depende e faz utilização de recurso de outro serviço, seja através de HTTP ou mensageria.</li>
+<li><strong>Provedor</strong> (<em>provider</em>): serviço fornecedor de recursos que tem o consumidor como dependente e que atende via API às requisições.</li>
+</ul>
+<p>A relação entre estas aplicações é definida por uma forma de contrato, um documento que especifíca as interações existentes: quais requisições o consumidor faz e quais respostas são esperadas do provedor para essas requisições. Ou seja, o esquema do contrato é definido com base em exemplos positivos.</p>
+<p>O consumidor define como espera ser respondido (momento de criação do contrato.) Quando são feitas alterações no código do serviço provedor, o teste de validação informa se o contrato foi quebrado em decorrência da alteração, interrompendo o progresso da build na pipeline de deploy, por exemplo.</p>
+<p>Esta prática possui benefícios práticos:</p>
+<ul>
+<li>Esconde a implementação: os times não precisam conhecer nenhum trecho de código de um serviço de outro time para entender como a resposta é gerada ou como é esperada, tudo fica a cargo de satisfazer o contrato.</li>
+</ul>
+<ul>
+<li>Cria um elo de confiança: podem ser feitas alterações no provedor sem medo de que outras aplicações sejam prejudicadas (a seguir veremos que, com uma ferramenta de broker de contratos, o provedor nem mesmo precisa conhecer quais aplicações dependem dele).</li>
+</ul>
+<p>Certamente um dos maiores benefícios é o desacoplamento entre as aplicações uma vez que as interfaces são mais bem definidas.</p>
+<p>Neste artigo irei definir esta prática nos termos do framework <a href="pact.io">Pact</a>, uma ferramenta de <em>contract tests</em>; provavelmente a mais utilizada para este fim. O ecossistema de Pact inclui também o <a target="_blank" rel="noopener" href="https://docs.pact.io/pact_broker">Pact Broker</a>, aplicação para compartilhamento de contratos e resultados de verificações.</p>
+<p>Estarei utilizando uma aplicação desenvolvida por mim com base no exemplo do pact-workshop[^repo-pact-workshop] em Javascript, mas Pact possui implementações e guias para diferentes linguagens.</p>
+<h2 id="Funcionamento-do-Pact"><a href="#Funcionamento-do-Pact" class="headerlink" title="Funcionamento do Pact"></a>Funcionamento do Pact</h2><p>Pact atua como <em>mock</em> nos dois lados da interação: para o <em>consumer</em> ele faz o papel do <em>provider</em> e o contrário para o <em>provider</em>. O ponto de partida é a especificação no lado <em>consumer</em>. O Pact intercepta as requisições que iriam para o <em>provider</em> respondendo com o que o <em>consumer</em> define no Pact test como esperado, neste momento os testes unitários do <em>consumer</em> também são realizados para garantir que com a resposta esperada do <em>provider</em> ele saberá operar como esperado também.</p>
+<p>Ao final dos testes no lado <em>consumer</em>, se todos os teste passam, é gerado um arquivo <code>.json</code> com um conjunto de interações (especificações de requisição e resposta esperada). Este arquivo é, por assim dizer, o pacto (contrato) do relacionamento, o <em>provider</em> precisará somente dele para validar se está de acordo com as especificações do <em>consumer</em>. O pacto deve ser distribuído para que o <em>provider</em> tenha acesso. Existem várias formas de fazer esta distribuição: transferir via diretório compartilhado, repositório git ou, o mais recomendado, um Pact Broker (que é abordado na sessão <a href="#pact-broker">Pact Broker</a>).</p>
+<p>A figura abaixo dá uma visão geral do funcionamento do Pact.</p>
+<br/>
+
+<p><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LC2AYrI9MJa-_aAjE1u%2F-LN88wE6mKsXwlpUIcxu%2F-LN88wz8GOdj0witaWgd%2Fpact-test-and-verify.png?generation=1537751898934036&alt=media"></p>
+<center><small>Panorama geral dos componentes sob teste em Pact. Fonte: https://docs.pact.io/getting_started/how_pact_works</small></center><br/>
+
+<h2 id="Aplicacao-demonstrativa"><a href="#Aplicacao-demonstrativa" class="headerlink" title="Aplicação demonstrativa"></a>Aplicação demonstrativa</h2><p>A aplicação exemplo no lado <em>consumer</em> passa no corpo da requisição uma lista de itens (descrições, preços e quantidades) para o <em>provider</em> que, então, calcula o valor total de uma compra com tais itens e define uma porcentagem máxima de desconto aplicável. O <em>consumer</em> adiciona uma restrição extra na porcentagem de desconto limitando-o a 15%.</p>
+<center>consumer.js</center>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">checkoutOrder</span> = items =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> request</span><br><span class="line">        .<span class="title function_">post</span>(<span class="string">`<span class="subst">$&#123;apiUri&#125;</span>/checkout`</span>)</span><br><span class="line">        .<span class="title function_">send</span>(&#123;</span><br><span class="line">            items</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">then</span>( <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> &#123;totalAmount, maxDescount&#125; = res.<span class="property">body</span>;</span><br><span class="line">            <span class="keyword">const</span> descount = maxDescount &lt;= <span class="number">0.15</span> ? maxDescount : <span class="number">0.15</span>;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                totalAmount,</span><br><span class="line">                <span class="attr">descount</span>: <span class="number">0.15</span>,</span><br><span class="line">                <span class="attr">withDescountAmount</span>: (<span class="number">1</span> - descount) * totalAmount</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>No lado do provedor o tratamento para a rota de checkout é calcular o valor total da ordem fazendo uma redução no array de itens recebido.</p>
+<center>provider.js</center>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server.<span class="title function_">post</span>(<span class="string">&#x27;/checkout&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> items = req.<span class="property">body</span>.<span class="property">items</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> total = items.<span class="title function_">reduce</span>(<span class="function">(<span class="params">sum, currentItem</span>) =&gt;</span> </span><br><span class="line">        sum + (currentItem.<span class="property">price</span> * currentItem.<span class="property">quantity</span>)</span><br><span class="line">    , <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    res.<span class="title function_">json</span>(&#123;</span><br><span class="line">        <span class="attr">totalAmount</span>: total,</span><br><span class="line">        <span class="attr">maxDescount</span>: <span class="number">0.2</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Testes-no-lado-Consumer"><a href="#Testes-no-lado-Consumer" class="headerlink" title="Testes no lado Consumer"></a>Testes no lado <em>Consumer</em></h3><p>O teste está definido utilizando o framework Mocha com Chai. O Pact entra inicialmente como mock do serviço <em>provider</em>. É feita a importação e a definição do Pact em que são especificados nomes, portas e arquivos em que serão realizados outputs de logs e do pacto.</p>
+<center>consumerPact.spec.js</center>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">Pact</span> = <span class="built_in">require</span>(<span class="string">&#x27;@pact-foundation/pact&#x27;</span>).<span class="property">Pact</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> provider = <span class="keyword">new</span> <span class="title class_">Pact</span>(&#123;</span><br><span class="line">    <span class="attr">consumer</span>: <span class="string">&#x27;My consumer&#x27;</span>,</span><br><span class="line">    <span class="attr">provider</span>: <span class="string">&#x27;My provider&#x27;</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3000</span>,</span><br><span class="line">    <span class="attr">log</span>: path.<span class="title function_">resolve</span>(process.<span class="title function_">cwd</span>(), <span class="string">&#x27;logs&#x27;</span>, <span class="string">&#x27;pact.log&#x27;</span>),</span><br><span class="line">    <span class="attr">dir</span>: path.<span class="title function_">resolve</span>(process.<span class="title function_">cwd</span>(), <span class="string">&#x27;pacts&#x27;</span>),</span><br><span class="line">    <span class="attr">logLevel</span>: <span class="string">&#x27;warn&#x27;</span>,</span><br><span class="line">    <span class="attr">spec</span>: <span class="number">2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>No corpo do teste esta definida a interação “a request for total amount” que define o formato da requisição (<code>withRequest</code>) e a resposta que o mock criado pelo Pact irá dar ao <em>consumer</em> (<code>willRespondWith</code>). Em seguida é feita a validação da resposta, verificando se o <code>totalAmount</code> é igual ao valor esperado (156.5) e se o valor final com desconto calculado pelo <em>consumer</em> é também o esperado (133.025).</p>
+<p>As validações são feitas sobre os resultados provenientes do <em>consumer</em> pois é justamente o que se deseja testar, se o <em>consumer</em> consegue prover suas funcionalidades adequadamente com os retornos consistentes vindos do <em>provider</em>.</p>
+<center>consumerPact.spec.js</center>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;and passing a valid items set&#x27;</span>, <span class="function">()=&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">before</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> provider.<span class="title function_">addInteraction</span>(&#123;</span><br><span class="line">            <span class="attr">uponReceiving</span>: <span class="string">&#x27;a request for total amount&#x27;</span>,</span><br><span class="line">            <span class="attr">withRequest</span>: &#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">                <span class="attr">path</span>: <span class="string">&#x27;/checkout&#x27;</span>,</span><br><span class="line">                <span class="attr">body</span>: &#123; items &#125;,</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">willRespondWith</span>: &#123;</span><br><span class="line">                <span class="attr">status</span>: <span class="number">200</span>,</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;Content-type&#x27;</span>: <span class="string">&#x27;application/json; charset=utf-8&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">body</span>: &#123;</span><br><span class="line">                    <span class="attr">totalAmount</span>: <span class="number">156.5</span>,</span><br><span class="line">                    <span class="attr">maxDescount</span>: <span class="number">0.2</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">it</span>(<span class="string">&#x27;can process the JSON payload from provider&#x27;</span>, <span class="function">(<span class="params">done</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> processedOrder = <span class="title function_">checkoutOrder</span>(items);</span><br><span class="line"></span><br><span class="line">        <span class="title function_">expect</span>(processedOrder).<span class="property">to</span>.<span class="property">eventually</span>.<span class="property">have</span>.<span class="title function_">property</span>(<span class="string">&#x27;totalAmount&#x27;</span>, <span class="number">156.5</span>);</span><br><span class="line">        <span class="title function_">expect</span>(processedOrder).<span class="property">to</span>.<span class="property">eventually</span>.<span class="property">have</span>.<span class="title function_">property</span>(<span class="string">&#x27;withDescountAmount&#x27;</span>, <span class="number">133.025</span>).<span class="title function_">notify</span>(done);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">it</span>(<span class="string">&#x27;should validate and create a contract&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> provider.<span class="title function_">verify</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Quando finalizada a execução dos testes, o Pact cria, no diretório definido anteriormente, o arquivo com as especificações. Este arquivo de pacto deve ser distribuído para o <em>provider</em>. Este projeto utiliza <a target="_blank" rel="noopener" href="https://pactflow.io/">Pactflow</a>, ferramenta online de Pact Broker para distribuição de pactos. É possível, também, executar Pact Broker em um servidor próprio[^pact-broker].</p>
+<center>my_consumer-my_provider.json</center>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;consumer&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &quot;My consumer&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;provider&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &quot;My provider&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;interactions&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;description&quot;: &quot;a request for total amount&quot;,</span><br><span class="line">      &quot;request&quot;: &#123;</span><br><span class="line">        &quot;method&quot;: &quot;POST&quot;,</span><br><span class="line">        &quot;path&quot;: &quot;/checkout&quot;,</span><br><span class="line">        &quot;headers&quot;: &#123;</span><br><span class="line">          &quot;Content-Type&quot;: &quot;application/json&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;body&quot;: &#123;</span><br><span class="line">          &quot;items&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">              &quot;description&quot;: &quot;Antique typewriter&quot;,</span><br><span class="line">              &quot;price&quot;: 49,</span><br><span class="line">              &quot;quantity&quot;: 1</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              &quot;description&quot;: &quot;Christmas decorations&quot;,</span><br><span class="line">              &quot;price&quot;: 15,</span><br><span class="line">              &quot;quantity&quot;: 5</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">              &quot;description&quot;: &quot;Notepad&quot;,</span><br><span class="line">              &quot;price&quot;: 16.25,</span><br><span class="line">              &quot;quantity&quot;: 2</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;response&quot;: &#123;</span><br><span class="line">        &quot;status&quot;: 200,</span><br><span class="line">        &quot;headers&quot;: &#123;</span><br><span class="line">          &quot;Content-type&quot;: &quot;application/json; charset=utf-8&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;body&quot;: &#123;</span><br><span class="line">          &quot;totalAmount&quot;: 156.5,</span><br><span class="line">          &quot;maxDescount&quot;: 0.2</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;metadata&quot;: &#123;</span><br><span class="line">    &quot;pactSpecification&quot;: &#123;</span><br><span class="line">      &quot;version&quot;: &quot;2.0.0&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Validacao-no-lado-Provider"><a href="#Validacao-no-lado-Provider" class="headerlink" title="Validação no lado Provider"></a>Validação no lado <em>Provider</em></h3><p>O lado <em>provider</em> tem a responsabilidade de estar em conformidade com o contrato. O teste consiste em buscar a distribuição do arquivo de pacto <code>.json</code> e validar as interações no ponto de vista do <em>provider</em>. A especificação, portanto, deve inicializar uma instância do servidor <em>provider</em> e utilizar o <code>Verifier</code> do Pact em seguida.</p>
+<p>Neste projeto, como está sendo utilizado Pactflow, as configurações incluem <code>pactBrokerUrl</code> e o <code>pactBrokerToken</code> que são as informações de conexão ao broker. Mas é possível configurar para utilizar o arquivo <code>.json</code> informando o caminho para o arquivo localmente. </p>
+<center>providerPact.spec.js</center>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;Provider test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> serverConn;</span><br><span class="line">    <span class="title function_">before</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        serverConn = server.<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Provider is running ...&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="title function_">describe</span>(<span class="string">&#x27;Matches \&quot;My consumer\&quot; requirements&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">it</span>(<span class="string">&#x27;should validate the contract&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Verifier</span>().<span class="title function_">verifyProvider</span>(&#123;</span><br><span class="line">                <span class="attr">provider</span>: <span class="string">&#x27;My provider&#x27;</span>,</span><br><span class="line">                <span class="attr">providerBaseUrl</span>: <span class="string">&#x27;http://localhost:3000&#x27;</span>,</span><br><span class="line">                pactBrokerUrl,</span><br><span class="line">                pactBrokerToken</span><br><span class="line">            &#125;).<span class="title function_">then</span>();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">after</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (serverConn) serverConn.<span class="title function_">close</span>();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Executando os testes é possível saber se, em produção, a aplicação entrará ou não em conflito com o <em>consumer</em>. Isto possibilita uma grande liberdade na alteração de como as coisas são feitas internamente e mesmo como os retornos são realizados. Imagine que a função de checkout foi alterada e, por algum engano, o retorno acrescente 5 reais ao montante final. A execução do teste reclamaria que esperava um valor diferente.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Diff                                           </span><br><span class="line">--------------------------------------           </span><br><span class="line"> &#123;                                             </span><br><span class="line">-  &quot;totalAmount&quot;: 156.5                        </span><br><span class="line">+  &quot;totalAmount&quot;: 161.5                        </span><br><span class="line"> &#125;                                             </span><br><span class="line">                                               </span><br><span class="line">Description of differences                     </span><br><span class="line">--------------------------------------         </span><br><span class="line">* Expected 156.5 but got 161.5 at $.totalAmount</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conteudos-relacionados"><a href="#Conteudos-relacionados" class="headerlink" title="Conteúdos relacionados"></a>Conteúdos relacionados</h2><p>Grande parte do conteúdo deste artigo se baseia conceitualmente na publicação em vídeo “The Principles of Microservices” de O’Reilly Media apresentado por Sam Newman e no livro “Building Microservices” também do Newman (uma leitura recomendada).</p>
+<p>Imagens e conceitos do framework Pact são do <a href="pact.io">Pact</a>.</p>
+<p>[^repo-pact-workshop]: Repositório no Github: <a target="_blank" rel="noopener" href="https://github.com/DiUS/pact-workshop-js">pact-workshop-js</a><br>[^pact-broker]: <a target="_blank" rel="noopener" href="https://docs.pact.io/pact_broker">Página do Pacto Broker</a></p>
+
+
+  <hr/>
+  <p>Este trabalho está licenciado com uma Licença <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.</p>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <a class="book-toc-expand" onclick="expand_toc()">Expandir tudo</a>
+    <a onclick="go_top()">Voltar ao topo</a>
+    <a onclick="go_bottom()">Ir para o final</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Comprimir tudo"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expandir tudo"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

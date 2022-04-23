@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+
+    <title>
+        
+          Wildfly no Modo de Operação Domain - Maradona Morais
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/">Maradona Morais</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+
+
+<script src="/js/book-sidebar.js"></script>
+
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          <div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-center">
+    Maradona Morais
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+  <h1 id="Wildfly-no-Modo-de-Operacao-Domain"><a href="#Wildfly-no-Modo-de-Operacao-Domain" class="headerlink" title="Wildfly no Modo de Operação Domain"></a>Wildfly no Modo de Operação Domain</h1><p>22 de outubro de 2019</p>
+<h2 id="Conceitos-do-Modo-Domain"><a href="#Conceitos-do-Modo-Domain" class="headerlink" title="Conceitos do Modo Domain"></a>Conceitos do Modo Domain</h2><p>O modo domain é um dos dois modos de operação do Wildfly. Previamente tratamos sobre o modo “standalone”, em que uma instância do serviço é executada em um host (físico ou virtual). O modo de operação domain gerencia um grupo de instâncias executando em múltiplos hosts, e permite o gerenciamento centralizado de recursos, módulos, extensões. O <strong>domain controller</strong> (ou master) define tais políticas. <a target="_blank" rel="noopener" href="https://kb.novaordis.com/index.php/WildFly_Domain_Mode_Concepts">^1</a></p>
+<p>Para compreender o modo domain devemos nos voltar à dois arquivos de configuração principais: domain.xml que define uma série de políticas, e server-groups e o arquivo host.xml, que define os servers que serão alinhados aos server-groups e à topologia em si.</p>
+<p>Server-groups são definições compartilhadas de conjuntos de instâncias (processos Java) de profiles (full, ha, ha-full), parâmetros do JVM e grupos de socket bindings, que lida com as portas e interfaces associadas ao grupo. Enquanto o domain.xml define estas configurações, o host.xml define quais, e quantos, servers serão alocados para os grupos definidos.</p>
+<p>No host.xml também é definido o tipo da instância no modo domain, isto é, se a instância é um master ou slave na topologia. Mais a seguir será demonstrada praticamente esta definição.</p>
+<p>Resumindo, teremos três tipos de processos Java a considerar <a target="_blank" rel="noopener" href="https://static.packt-cdn.com/downloads/2413OS_Appendix.pdf">^2</a>:</p>
+<ul>
+<li>Domain: processo Java, chamado domain controller (DC de agora em diante) que é o master, onde também fica disponibilizado o sistema de gerenciamento do domínio.</li>
+</ul>
+<ul>
+<li>Server group (SG): uma representação lógica das configurações do Wildfly. Composto por um ou mais instâncias de servidores.</li>
+<li>Host: processo Java, chamado host controller (HC), normalmente referido como processo slave. O DC se comunica com o HC publicando novas configurações.</li>
+</ul>
+<p>A Figura 1 demonstra um panorama geral em que estes conceitos aparecem. Temos o DC e 3 HC, entre eles temos 3 SGs distribuindo 7 servers entre os hosts.</p>
+<p><img src="/images/wildfly-server-group.png" alt="Figura 1: Wildfly configurado em modo domain"></p>
+<h2 id="Instalando-e-configurando-o-Wildfly"><a href="#Instalando-e-configurando-o-Wildfly" class="headerlink" title="Instalando e configurando o Wildfly"></a>Instalando e configurando o Wildfly</h2><p>Para este tutorial será considerada a utilização de um software de virtualização, pois estaremos virtualizando 3 máquinas virtuais (um DC e dois HC). Para isto estou utilizando o Oracle Virtual Box com a imagem do sistema operacional CentOS. Também é importante uma pré-configuração da máquina com desabilitação do serviço firewalld e do SELinux. Também verifique ter o Java instalado. Com estes requisitos prontos, podemos dar início.</p>
+<p>Vamos dar início com a instalação do Wildfly. Acessando o <a target="_blank" rel="noopener" href="https://wildfly.org/">https://wildfly.org</a>, na sessão Downloads, você encontrará facilmente o endereço para o download da versão Full mais recente. Aqui está sendo utilizada a versão 18:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">wget https://download.jboss.org/wildfly/18.0.0.Final/wildfly-18.0.0.Final.zip</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">unzip wildfly-18.0.0.Final.zip</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mv</span> wildfly-18.0.0.Final /opt/wildfly</span></span><br></pre></td></tr></table></figure>
+
+<p>Com os comandos acima baixamos, descompactamos e movemos o diretório do wildfly para o &#x2F;opt&#x2F;wildfly.</p>
+<h2 id="Criando-usuario-e-dando-permissoes"><a href="#Criando-usuario-e-dando-permissoes" class="headerlink" title="Criando usuário e dando permissões"></a>Criando usuário e dando permissões</h2><p>Vamos criar o usuário wildfly que terá a propriedade do diretório recém criado &#x2F;opt&#x2F;wildfly:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">useradd wildfly</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">chown</span> -R wildfly. /opt/wildfly/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Criando-o-servico-de-execucao"><a href="#Criando-o-servico-de-execucao" class="headerlink" title="Criando o serviço de execução"></a>Criando o serviço de execução</h2><p>Para ter uma melhor estrutura de execução do Wildfly é interessante configurar um Unit File no nosso systemd, assim podemos utilizar comandos mais elegantes para inicializar o serviço e habilitar para que seja iniciado com o host. Para nossa sorte o wildfly acompanha um template de arquivos que podem ser simplesmente copiados para os locais indicados que o serviço estará devidamente configurado, sem a necessidade de criar o Unit File manualmente.</p>
+<p>Estes templates estão localizados em $WILDFLY_HOME&#x2F;docs&#x2F;contrib&#x2F;scripts&#x2F;systemd. Recomendo a leitura do README que se encontra também neste endereço. Vamos então copiar os arquivos:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mkdir</span> /etc/wildfly</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> wildfly.conf /etc/wildfly/</span></span><br></pre></td></tr></table></figure>
+
+<p>Este <strong>wildfly.conf</strong> contém variáveis de ambiente que definem o modo de operação é a interface de binding do serviço, ele vem definido para utilizar o modo standalone. Vamos modificá-lo para modo domain fazendo as seguintes mudanças:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WILDFLY_CONFIG=domain.xml</span><br><span class="line">WILDFLY_MODE=domain</span><br></pre></td></tr></table></figure>
+
+<p>Continuando, copie o restante dos arquivos:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> wildfly.service /etc/systemd/system</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> launch.sh /opt/wildfly/bin</span></span><br></pre></td></tr></table></figure>
+
+<p>Agora temos o setup para inicialização do modo domain, vamos habilitá-lo para inicialização junto ao host e iniciar o serviço:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl <span class="built_in">enable</span> wildfly</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl start wildfly</span></span><br></pre></td></tr></table></figure>
+
+<p>Pode ser necessário reiniciar o workload do systemd, com o comando:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl daemon-reload</span></span><br></pre></td></tr></table></figure>
+
+<p>O endereço do host na porta 8080 deve retornar a tradicional página inicial do Wildfly.</p>
+<p>A partir deste ponto temos a bifurcação na configuração do master e os slaves, ambos os tipos devem possuir as mesmas configurações que fizemos até o momento. Portanto, recomendo que, agora, desligue o host que está configurando e faça um clone do mesmo renomeando-o para “node1”, por exemplo, de forma que o atual será o nosso master.</p>
+<h2 id="Configurando-o-host-master"><a href="#Configurando-o-host-master" class="headerlink" title="Configurando o host master"></a>Configurando o host master</h2><p>Como descrito na conceituação, os arquivos de configuração domain.xml e host.xml são os que devemos modificar para personalizar nosso modo domain. Eles se encontram em $WILDFLY_HOME&#x2F;domain&#x2F;configuration&#x2F;.</p>
+<p>Iniciando com o domain.xml, é onde se definem os server-groups (SGs), esta definição é feita na tag <server-groups>, vamos alterá-los da seguinte forma:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;server-groups&gt;</span><br><span class="line">    &lt;server-group name=&quot;server-group-a&quot; profile=&quot;full&quot;&gt;</span><br><span class="line">        &lt;jvm name=&quot;default&quot;&gt;</span><br><span class="line">            &lt;heap size=&quot;64m&quot; max-size=&quot;512m&quot;/&gt;</span><br><span class="line">        &lt;/jvm&gt;</span><br><span class="line">        &lt;socket-binding-group ref=&quot;full-sockets&quot;/&gt;</span><br><span class="line">    &lt;/server-group&gt;</span><br><span class="line">    &lt;server-group name=&quot;server-group-b&quot; profile=&quot;full-ha&quot;&gt;</span><br><span class="line">    	&lt;jvm name=&quot;default&quot;&gt;</span><br><span class="line">	    &lt;heap size=&quot;64m&quot; max-size=&quot;512m&quot;/&gt;</span><br><span class="line">	&lt;/jvm&gt;</span><br><span class="line">	&lt;socket-binding-group ref=&quot;full-ha-sockets&quot;/&gt;</span><br><span class="line">    &lt;/server-group&gt;</span><br><span class="line">&lt;/server-groups&gt;</span><br></pre></td></tr></table></figure>
+
+<p>No arquivo host.xml temos algumas tags interessantes, a primeira delas é <domain-controler>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;domain-controller&gt;</span><br><span class="line">    &lt;local/&gt;</span><br><span class="line">&lt;/domain-controller&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Esta configuração, com a tag <local/>, indica que o host atual é o próprio DC (domain controller). Você verá que nos hosts slaves esta tag conterá uma referência ao DC.</p>
+<p>No meu ambiente foi necessário também modificar as interfaces mudando de 127.0.0.1 para 0.0.0.0 nos endereços:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;interfaces&gt;</span><br><span class="line">    &lt;interface name=&quot;management&quot;&gt;</span><br><span class="line">        &lt;inet-address value=&quot;$&#123;jboss.bind.address.management:0.0.0.0&#125;&quot;/&gt;</span><br><span class="line">    &lt;/interface&gt;</span><br><span class="line">    &lt;interface name=&quot;public&quot;&gt;</span><br><span class="line">        &lt;inet-address value=&quot;$&#123;jboss.bind.address:0.0.0.0&#125;&quot;/&gt;</span><br><span class="line">    &lt;/interface&gt;</span><br><span class="line">&lt;/interfaces&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Note que para a interface “public” esta modificação não seria necessária pois já é alterada automaticamente pelo script launch.sh, mas a interface de management não é alterada pelo script e por isso tornou-se necessário definir o endereço manualmente no host.xml.</p>
+<p>Também são definidos no host.xml os servers, na tag <servers>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;servers&gt;</span><br><span class="line">    &lt;server name=&quot;server-one&quot; group=&quot;server-group-a&quot;/&gt;</span><br><span class="line">    &lt;server name=&quot;server-two&quot; group=&quot;server-group-a&quot; auto-start=&quot;true&quot;&gt;</span><br><span class="line">        &lt;jvm name=&quot;default&quot;/&gt;</span><br><span class="line">	&lt;socket-bindings port-offset=&quot;150&quot;/&gt;</span><br><span class="line">    &lt;/server&gt;</span><br><span class="line">    &lt;server name=&quot;server-three&quot; group=&quot;server-group-b&quot; auto-start=&quot;false&quot;&gt;</span><br><span class="line">        &lt;jvm name=&quot;default&quot;/&gt;</span><br><span class="line">	&lt;socket-bindings port-offset=&quot;250&quot;/&gt;</span><br><span class="line">    &lt;/server&gt;</span><br><span class="line">&lt;/servers&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Com estas configurações, o nosso master está pronto para entrar em modo domain. Lembre-se de reiniciar o serviço com o systemctl. Vamos agora aos slaves:</p>
+<h2 id="Configurando-o-Node-1"><a href="#Configurando-o-Node-1" class="headerlink" title="Configurando o Node 1"></a>Configurando o Node 1</h2><p>Lembre-se que anteriormente recomendei fazer o clone da configuração do master até certo momento. Nesta máquina virtual clonada daremos início à configuração do primeiro nó: Node 1.</p>
+<p>No host do node1 vamos também modificar o arquivo host.xml. O host.xml vem definido como padrão para ser um master, mas já temos um master em execução. Felizmente existe também um arquivo host-slave.xml que é um template para configuração do slave. Vamos salvar o host.xml atual e utilizar o host-slave.xml no lugar:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mv</span> host.xml host.bkp</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">cp</span> host-slave.xml host.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>Vamos primeiramente dar nome ao host modificando a tag host:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;host xmlns=&quot;urn:jboss:domain:10.0&quot; name=&quot;node1&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Agora definiremos a referência para o master, para isso você deve modificar a domain-controller com o ip do master, no meu caso é 0 198.168.0.18:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;domain-controller&gt;</span><br><span class="line">    &lt;remote security-realm=&quot;ManagementRealm&quot; username=&quot;node1user&quot;&gt;</span><br><span class="line">    	&lt;discovery-options&gt;</span><br><span class="line">	    &lt;static-discovery</span><br><span class="line">	        name=&quot;primary&quot;</span><br><span class="line">		protocol=&quot;$&#123;jboss.domain.master.protocol:remote+http&#125;&quot;</span><br><span class="line">		host=&quot;$&#123;jboss.domain.master.address:192.168.0.18&#125;&quot;</span><br><span class="line">		port=&quot;$&#123;jboss.domain.master.port:9990&#125;&quot;/&gt;</span><br><span class="line">	&lt;/discovery-options&gt;</span><br><span class="line">    &lt;/remote&gt;</span><br><span class="line">&lt;/domain-controller&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Note que na tag <remote> eu adicionei o atributo username. O que acontece aqui é que o node1 passará por um controle de acesso feito pelo master.</p>
+<p>Para isso você deverá, no master, criar um usuário para acesso do node. Isso é feito com o script $WILDFLY_HOME&#x2F;bin&#x2F;add-user.sh:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">What type of user do you wish to add?</span><br><span class="line">a) Management User (mgmt-users.properties)</span><br><span class="line">Username : node1user</span><br><span class="line">Password :</span><br><span class="line">Is this correct yes/no? yes</span><br><span class="line">Is this new user going to be used for one AS process to connect to another AS process? ...</span><br><span class="line">yes/no? yes</span><br></pre></td></tr></table></figure>
+
+<p>Note que ao final da execução ele retornará uma tag parecida com esta: <secret value="bm9kZTJ1c2Vy" /></p>
+<p>Esta tag deve ser inserida numa tag server-identities no host.xml:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;security-realm name=&quot;ManagementRealm&quot;&gt;</span><br><span class="line">    &lt;server-identities&gt;</span><br><span class="line">        &lt;secret value=&quot;bm9kZTF1c2Vy&quot;/&gt;</span><br><span class="line">    &lt;/server-identities&gt;</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>Com estas configurações, o host slave estará pronto para ser acoplado ao domínio.</p>
+<p><img src="/images/wildfly-topologia.png" alt="Figura 2: Hosts, Server-groups e Servers na topologia criada"></p>
+<p>A Figura 2 apresenta um panorama geral dos hosts (um master e dois slaves) seus servers e os server-groups criados ao final do tutorial.</p>
+
+
+  <hr/>
+  <p>Este trabalho está licenciado com uma Licença <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.</p>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <a class="book-toc-expand" onclick="expand_toc()">Expandir tudo</a>
+    <a onclick="go_top()">Voltar ao topo</a>
+    <a onclick="go_bottom()">Ir para o final</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Comprimir tudo"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expandir tudo"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

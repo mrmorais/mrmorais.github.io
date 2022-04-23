@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+
+    <title>
+        
+          [IoT 1] Que haja luz com Johnny-Five, Express e Arduino - Maradona Morais
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/">Maradona Morais</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+
+
+<script src="/js/book-sidebar.js"></script>
+
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          <div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-center">
+    Maradona Morais
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+<div id="gr_grid_widget_1580141760">
+  <!-- Show static html as a placeholder in case js is not enabled - javascript include will override this if things work -->
+  <h2 style="font-size:16pt">
+    <a style="text-decoration: none;" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/review/list/109108590-maradona-morais?shelf=currently-reading&utm_medium=api&utm_source=grid_widget">Maradona's currently-reading book montage</a>
+  </h2>
+  <div class="gr_grid_container">
+    <div class="gr_grid_book_container"><a title="Getúlio: Dos Anos de Formação à Conquista do Poder (1882-1930)" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/15731837-get-lio"><img alt="Getúlio: Dos Anos de Formação à Conquista do Poder" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1341188752l/15731837._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/44286534-you-look-like-a-thing-and-i-love-you"><img alt="You Look Like a Thing and I Love You: How Artificial Intelligence Works and Why It's Making the World a Weirder Place" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1569287643l/44286534._SX50_.jpg" /></a></div>
+    <div class="gr_grid_book_container"><a title="Microservice Patterns" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/book/show/34372564-microservice-patterns"><img alt="Microservice Patterns" border="0" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1487751473l/34372564._SX50_.jpg" /></a></div>
+    <br style="clear: both"/><br/><a class="gr_grid_branding" style="font-size: .9em; color: #382110; text-decoration: none; float: right; clear: both" rel="nofollow noopener" target="_blank" href="https://www.goodreads.com/user/show/109108590-maradona-morais">Maradona Morais's favorite books »</a>
+  <noscript><br/>Share <a rel="nofollow" href="/">book reviews</a> and ratings with Maradona, and even join a <a rel="nofollow" href="/group">book club</a> on Goodreads.</noscript>
+  </div>
+</div>
+<script src="https://www.goodreads.com/review/grid_widget/109108590.Maradona's%20currently-reading%20book%20montage?cover_size=small&hide_link=&hide_title=&num_books=20&order=a&shelf=currently-reading&sort=date_added&widget_id=1580141760" type="text/javascript" charset="utf-8"></script>
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+  <h1 id="IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino"><a href="#IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino" class="headerlink" title="[IoT 1] Que haja luz com Johnny-Five, Express e Arduino"></a>[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</h1><p>06 de maio de 2016</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led">Ver código no GitHub</a></p>
+<p>Olá! Seja bem vindo ao meu GitHub blog. Eu tenho a intenção de escrever várias séries de “tutoriais” que possam ser colocados em prática e que, acima de tudo, sejam interessantes e explorem a criatividade para desenvolver mais coisas interessantes.</p>
+<p>Neste post nós iremos criar uma aplicação que envolve Node JS, Express e Johnny-Five. Tudo isso controlando um LED numa placa Arduino (a minha é versão UNO, verifique no site do <a target="_blank" rel="noopener" href="http://johnny-five.io/">Johnny-Five</a> as placas compatíveis.)</p>
+<h3 id="Express-Node-JS"><a href="#Express-Node-JS" class="headerlink" title="Express + Node JS"></a>Express + Node JS</h3><p><strong>Node JS</strong>, por uma definição básica do <a target="_blank" rel="noopener" href="https://pt.wikipedia.org/wiki/Node.js">Wikipédia</a>, é um interpretador de JavaScript que funciona no lado do servidor. É baseado no interpretador V8, da Google. Node JS é, sem dúvidas, algo muito poderoso e que possui muita força na comunidade, dá para fazer extremamente tudo com Node JS. Futuramente estaremos falando mais sobre ele e suas aplicações diversas.</p>
+<p>Um dos framework para web desenvolvidos para Node JS é o <strong>Express</strong> (ou Express JS). É um frame bastante completo e que possui suporte para a maioria das views engines.</p>
+<h3 id="Johnny-Five"><a href="#Johnny-Five" class="headerlink" title="Johnny-Five"></a>Johnny-Five</h3><p>Essa, assim como o Express, é mais uma biblioteca para NodeJS. <strong>Johnny-Five</strong> permite controlar placas como Arduino, BeagleBone, e muitas outras, com JavaScript através do NodeJS.</p>
+<h3 id="Juntando-as-pecas"><a href="#Juntando-as-pecas" class="headerlink" title="Juntando as peças"></a>Juntando as peças</h3><p>Em resumo: NodeJS é muito rico em aplicações e principalmente é muito versátil. Podemos conectar duas bibliotecas inteiramente independentes e desenvolver soluções bastante criativas. E é isto que faremos hoje! Iremos utilizar o Johnny-Five para controlar a nossa placa Arduino e na mesma aplicação criar um servidor web para que esse controle possa ser feito através da rede ou, quem sabe, através da internet.</p>
+<p><strong>Mãos ao código!!!</strong></p>
+<p>(Certifique-se de possuir o NodeJS instalado)</p>
+<p>A primeira coisa a se fazer é, em uma pasta vazia, instalar nosso pacote express e o johnny-five. No terminal:</p>
+<pre><code>sudo npm install express --save
+sudo npm install johnny-five --save
+</code></pre>
+<p>Em outros post falaremos sobre o NPM e sobre como organizar um projeto com ele. Você pode criar uma aplicação Express através do comando “express nome-da-app”, no entanto eu desencorajo esta prática e sugiro que você mesmo crie os arquivos da aplicação.</p>
+<p>Crie o arquivo principal <strong>index.js</strong>:</p>
+<pre><code>var express = require(&#39;express&#39;);
+var five = require(&#39;johnny-five&#39;);
+</code></pre>
+<p>Indica ao NodeJS que a aplicação requer express e johnny-five instalados</p>
+<pre><code>var board = new five.Board();
+var led;
+var status = &quot;Apagado&quot;;
+
+board.on(&quot;ready&quot;, function() &#123;
+    led = new five.Led(13);
+&#125;);
+</code></pre>
+<p>A construção de <code>five.Board()</code> faz uma varredura nas portas seriais do computador na finalidade de encontrar uma placa a ser controlada. A variável status irá servir apenas para exibir ou alterar o estado do LED futuramente, por enquanto é Apagado.</p>
+<p><code>board.on()</code> é executado quando a placa foi encontrada e está pronta para rodar. Neste estágio nós inicializamos um LED na porta 13 da placa.</p>
+<pre><code>var app = express();
+app.use(express.static(__dirname + &#39;/public&#39;));
+</code></pre>
+<p>Usaremos a variável app para gerenciar a nossa instancia de uma aplicação Express. A função <code>use()</code>, neste caso, o diretório de arquivos estáticos do nosso site. Como normalmente em qualquer site. Aqui foi escolhido a pasta &#x2F;public.</p>
+<pre><code>app.post(&#39;/led&#39;, function(req, res) &#123;
+    var command = req.body.acao;
+    console.log(command);
+    if (command == &quot;apagar&quot;) &#123;
+        console.log(&quot;Apagando...&quot;);
+        if(led.off())&#123;
+            status = &quot;Apagado&quot;;
+            console.log(&quot;Sucesso. Apagado.&quot;);
+
+            res.send(status);
+        &#125; else &#123;
+            res.send(&quot;error&quot;);
+        &#125;
+    &#125;
+
+    if (command == &quot;acender&quot;) &#123;
+        console.log(&quot;Acendendo...&quot;);
+        if(led.on())&#123;
+            status = &quot;Aceso&quot;;
+            console.log(&quot;Sucesso. Aceso.&quot;);
+
+            res.send(status);
+        &#125; else &#123;
+            res.send(&quot;error&quot;);
+        &#125;
+    &#125;
+&#125;);
+</code></pre>
+<p><code>app.post()</code> ou <code>app.get()</code> serão usadas para responder às requisições HTTP do respectivo tipo, POST ou GET (também existem outros). Este com o POST receberá requisições por AJAX com um parametro ‘acao’. Dependendo da ação recebida ele irá executar o comando <code>led.on()</code>, para acender, ou <code>led.off()</code>, para apagar. E a resposta (<code>res.send()</code>) será o novo estado do LED.</p>
+<pre><code>app.get(&#39;/&#39;, function(req, res) &#123;
+    res.render(&#39;home&#39;, &#123;ledStatus: status&#125;);
+&#125;);
+</code></pre>
+<p>Essa resposta GET irá renderizar a página inicial e passar o estado do led.</p>
+<pre><code>app.listen(3000, function() &#123;
+    console.log(&#39;Express started&#39;);
+&#125;);
+</code></pre>
+<p>Por fim, o aplicativo é colocado para “rodar” na porta 3000.</p>
+<p>Bem, agora temos o cerne de nossa aplicação. Agora precisamos criar uma view. A view irá incorporar o jQuery que será utilizado para enviar requisições por ajax para POST ‘&#x2F;led’ que irá tratar ações. Não irei detalhar como a view foi feita, sugiro que baixe o código-fonte deste tutorial para ver como ficou na íntegra. </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led">Ver código no GitHub</a></p>
+<p><img src="http://i.imgur.com/q5jEcTe.png"></p>
+<p>Para rodar o código é muito simples. No terminal:</p>
+<pre><code>node index.js
+</code></pre>
+<p>Antes de executar certifique-se de preparar sua placa com um led no pino 13 e ligar em uma porta USB. </p>
+<p><img src="http://johnny-five.io/img/breadboard/led-13.png"></p>
+<p>Algo interessante para se fazer é testar isso pelo smartphone conectado à rede. Para isso é necessário liberar a porta 3000 do seu computador na interface de rede:</p>
+<pre><code>iptables -A INPUT -p tcp -i wlan0 --dport 3000 -j ACCEPT
+</code></pre>
+<p>Espero ter contribuído com este tutorial! Em breve trarei mais coisas interessantes.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mrmorais/tutoriais/tree/master/johnny-five-led">Ver código no GitHub</a></p>
+
+
+  <hr/>
+  <p>Este trabalho está licenciado com uma Licença <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.</p>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <a class="book-toc-expand" onclick="expand_toc()">Expandir tudo</a>
+    <a onclick="go_top()">Voltar ao topo</a>
+    <a onclick="go_bottom()">Ir para o final</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Comprimir tudo"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expandir tudo"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
