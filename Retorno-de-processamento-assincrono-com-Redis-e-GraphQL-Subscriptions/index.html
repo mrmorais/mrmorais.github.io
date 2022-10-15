@@ -11,7 +11,7 @@
 
     <title>
         
-          (English) The Lazy World of Clojure - Maradona Morais
+          Retorno de processamento assíncrono com Redis e GraphQL Subscriptions - Maradona Morais
         
     </title>
 
@@ -263,27 +263,30 @@
 </div>
 
 <div class="book-post">
-  <h1 id="English-The-Lazy-World-of-Clojure"><a href="#English-The-Lazy-World-of-Clojure" class="headerlink" title="(English) The Lazy World of Clojure"></a>(English) The Lazy World of Clojure</h1><p>08 de outubro de 2019</p>
-<p>In functional programming context laziness means delaying the execution of a code or, putting in other words: you only compute (realize) a code when you need the result.</p>
-<p>Clojure is not a lazy language (like Haskell is) but it supports lazily evaluated sequences and most core functions uses lazy-seq under the hood, so if you’re programming in Clojure you’re using lazy-seq (as we’ll gonna call it from now.)</p>
-<p>There are some benefits of using lazy-seq: the first one is that we can represent infinite sequences (fibonacci, odd and even, prime numbers.) Another good reason to use lazy-seqs is that it does caching and thunking with the results, as we’ll see next.</p>
-<p>A good way to think is that a lazy-seq only stores a recipe and a state of the sequence, so it don’t have to perform all of them. It’s very close to how functions works. Until a function got called the body is not evaluated, even because it only have the recipe but the ingredients (the parameters) are arriving yet.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(def ten (+ 5 5)) ; is evaluated on execution</span><br><span class="line">(defn ten [] (+ 5 5)) ; body is evaluated later</span><br></pre></td></tr></table></figure>
+  <h1 id="Retorno-de-processamento-assincrono-com-Redis-e-GraphQL-Subscriptions"><a href="#Retorno-de-processamento-assincrono-com-Redis-e-GraphQL-Subscriptions" class="headerlink" title="Retorno de processamento assíncrono com Redis e GraphQL Subscriptions"></a>Retorno de processamento assíncrono com Redis e GraphQL Subscriptions</h1><p>Não é difícil encontrarmos situações aplicáveis para processamentos assíncronos: processamento de pagamento, anti-fraude, validações com sistemas terceiros, etc. Em geral, são serviços que demandam integrações ou pode demorar tempo consideravelmente alto para uma requisição síncrona.</p>
+<p>Neste artigo, usando o contexto de processamento de pagamentos, pretendo abordar uma forma de implementação de retorno em um processamento assíncrono. O foco, na verdade, é simular uma experiência síncrona, em que na mesma página o usuário esperaria o fim do processamento.</p>
+<p>Certamente existem formas diferentes de obter um resultado parecido. Inicialmente podemos pensar em um <em>polling</em>, em que o cliente faria várias requisições para saber o status do processamento até estar finalizado. Apesar de ser de fácil implementação essa abordagem tem o ponto negativo pela quantidade de requisições necessárias, que pode ser grande se o processo for demorado.</p>
+<h2 id="Implementando-a-demonstracao"><a href="#Implementando-a-demonstracao" class="headerlink" title="Implementando a demonstração"></a>Implementando a demonstração</h2><p>Criei um projeto bem simples que lista cada processo e seu status. O processo na verdade é um timer aleatório entre 0 e 10 segundos que finaliza com um status também aleatório “sucesso” ou “falha”.</p>
+<p><img src="/images/demo-async-proc.gif"></p>
+<p>Para esta implementação vamos utilizar a feature de inscrição do GraphQL, o “subscription”, que nada mais é que uma abstração usando Web Socket. Uma sistema de pub&#x2F;sub, como o Redis, nos permitirá notificar o retorno do processamento de forma desacoplada. Além deles, estou usando o ActiveMQ (que tem a mesma interface do SQS) como mecanismo de fila, que pode até mesmo ser substituído pelo Redis.</p>
+<p><img src="/images/async-process-comp.png"></p>
+<p>É importante termos um identificador do processo (task id) já que o mesmo processo deve passar por diferentes sistemas e etapas. Aqui optei por <strong>Client Generated ID</strong>, um UUID gerado no front-end que passarei a chamar de “task id”.</p>
+<p>A API GraphQL possui dois recursos: a mutation <code>initiatePayment</code> que inicializará o processamento e uma subscription <code>paymentProcessed</code> que será usada para escutar o retorno do processamento.</p>
+<p>O front-end requisitará esses recursos quase ao mesmo tempo, dando início e já escutando o retorno da mensagem criada.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type Mutation &#123;</span><br><span class="line">  initiatePayment(id: String!): PaymentProcess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Subscription &#123;</span><br><span class="line">  paymentProcessed(id: String): PaymentProcess</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>In the first example, the sum must be evaluated what is not true for the second one.</p>
-<p>Let’s get into lazy-seq by Fibonacci’s sequence example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(defn fib</span><br><span class="line">  ([] (fib 0 1))]</span><br><span class="line">  ([x y] (lazy-seq (cons x (fib y (+ x y))))))</span><br></pre></td></tr></table></figure>
+<h3 id="Iniciando-o-pagamento"><a href="#Iniciando-o-pagamento" class="headerlink" title="Iniciando o pagamento"></a>Iniciando o pagamento</h3><p>A mutation é bem simples. Ela envia para uma fila SQS as informações do processo criado.</p>
+<script src="https://gist.github.com/mrmorais/d12385ce79510fa96f55ff8f4f40c6fe.js"></script>
 
-<p>The lazy-seq forces to postpone the evaluation of <code>cons</code>. <code>cons</code> returns a seq where the first param is the first element and the second param is the rest. For instance:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(cons 1 [2 3])</span><br><span class="line">; (1 2 3)</span><br></pre></td></tr></table></figure>
+<p>Esta fila, por sua vez, é consumida pelo “Payment Processor” que gera os resultados aleatórios. O resultado do processamento é publicado no Redis Pub Sub em um tópico com nome “PAYMENT_PROCESSED.[task-id]”. Isso é o que tornará possível uma escuta reativa a este resultado, pois o cliente estará inscrito neste tópico.</p>
+<script src="https://gist.github.com/mrmorais/b112a204b652d5edaf9a8b7875307615.js"></script>
 
-<p>So, while taking our fibonacci sequence it would calculate far as necessary instead perform all recurrences (what may take a while). A interesting experience is to add a Thread&#x2F;sleep to that fib function to see how lazy-seq caches the results.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(defn fib</span><br><span class="line">  ([] (fib 0 1))</span><br><span class="line">  ([x y] (Thread/sleep 1000) (lazy-seq (cons x (fib y (+ x y))))))</span><br></pre></td></tr></table></figure>
+<h3 id="Aguardando-o-retorno"><a href="#Aguardando-o-retorno" class="headerlink" title="Aguardando o retorno"></a>Aguardando o retorno</h3><p>Para que o front-end saiba que o pagamento foi processado e conheça o resultado desse processamento ele se inscreve na subscription “paymentProcessed” passando o task-id. A implementação desta subscription é tão simples que tem praticamente uma linha:</p>
+<script src="https://gist.github.com/mrmorais/e612a63948984e7441adcdb9859cf1d8.js"></script>
 
-<p>You’ll notice that at the first time it will take the n * 1000 milliseconds to respond, but when call it again it will be immediate.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(def a (fib))</span><br><span class="line">user =&gt; (take 10 a)</span><br><span class="line">; (0 1 1 2 3 5 8 13 21 34) - 10 seconds after...</span><br><span class="line">user =&gt; (take 10 a)</span><br><span class="line">; (0 1 1 2 3 5 8 13 21 34) - immediately</span><br></pre></td></tr></table></figure>
-
-<p>Lazy-seq is a very useful Clojure feature, there’s certainly a lot more to read and learn about it, but for now I hope that you enjoyed what I had to talk about this subject.</p>
+<p>O método <code>asyncIterator</code> do <a target="_blank" rel="noopener" href="https://github.com/davidyaha/graphql-redis-subscriptions">graphql-redis-subscriptions</a> cria uma inscrição no Redis ao tópico informado e escuta os eventos publicados neste tópico, retornando um evento quando ele existir. O nome do tópico é o mesmo que o processador utilizará quando finalizar a execução.</p>
+<p>Dessa forma o handler da subscription será chamado no front-end e ele reagirá de acordo mostrando o resultado do processamento.</p>
+<p>Os códigos utilizados nesta demonstração são bem simples e fáceis de reproduzir. Eles estão todos disponíveis no meu GitHub <a target="_blank" rel="noopener" href="https://github.com/mrmorais/async-process">neste endereço</a>.</p>
 
 
   <hr/>
