@@ -27,7 +27,7 @@ img {
 
 .book-container {
 	height: 100%;
-	font-family: 'Noto Sans TC', 'Noto Sans SC', 'Noto Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 @media all and (min-width: 960px) {
@@ -99,8 +99,9 @@ img {
 }
 
 .book-post {
-	max-width: 95%;
-	font-family: Cambria, Georgia, 'Times New Roman', Times, serif;
+	max-width: 70%;
+	margin: auto;
+	font-family: 'Open Sans', Georgia, 'Times New Roman', Times, serif;
 }
 
 .book-post .book-post-title {
@@ -154,8 +155,8 @@ img {
 
 .book-post p {
 	font-size: 17px;
-	margin-bottom: 0.625rem;
-	line-height: 1.65em;
+	margin-bottom: 1.5rem;
+	line-height: 1.8em;
 }
 
 .book-post hr {
@@ -191,8 +192,9 @@ img {
 }
 
 .book-post li {
-	margin-top: .4rem;
-	margin-bottom: .4rem;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
+	line-height: 1.56rem;
 	font-size: 17px;
 }
 
@@ -247,7 +249,7 @@ img {
 }
 
 .book-post figure.highlight pre {
-	font-size: 13px;
+	font-size: 15px;
 	line-height: 22px;
 }
 
@@ -502,4 +504,16 @@ img {
 
 .left {
 	text-align: left;
+}
+
+@keyframes horizontal-shaking {
+	0% { transform: translateX(0) }
+	25% { transform: translateX(5px) }
+	50% { transform: translateX(-5px) }
+	75% { transform: translateX(5px) }
+	100% { transform: translateX(0) }
+}
+
+.animate-boom {
+	animation: horizontal-shaking 0.35s 3;
 }
