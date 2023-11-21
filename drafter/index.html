@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown-common-style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./icon.png" />
+  <title>Drafter</title>
+</head>
+<body>
+  <div id="editor" spellcheck="false">
+  </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quilljs-markdown@latest/dist/quilljs-markdown.js"></script>
+  <script>
+    var editor = new Quill('#editor', {
+      theme: 'bubble'
+    });
+
+    new QuillMarkdown(editor);
+
+    const textEncoder = new TextEncoder();
+    const textDecoder = new TextDecoder();
+
+    let lastSeenHash = window.localStorage.getItem('draftHash');
+
+    const savedContent = window.localStorage.getItem("draftHtml");
+
+    if (savedContent) {
+      document.getElementsByClassName('ql-editor')[0].innerHTML = savedContent;
+    }
+
+    setInterval(async () => {
+      console.log('Starting auto saving...');
+
+      const content = document.getElementsByClassName('ql-editor')[0].innerHTML;
+
+      const hash = await window.crypto.subtle.digest('SHA-256', textEncoder.encode(content));
+      const serializableHash = textDecoder.decode(hash);
+      
+      if (lastSeenHash != serializableHash) {
+        console.log('Text changed');
+
+        window.localStorage.setItem('draftHash', serializableHash);
+        window.localStorage.setItem('draftHtml', content);
+      }
+
+      lastSeenHash = serializableHash;
+    }, 2000);
+  </script>
+</body>
+</html>

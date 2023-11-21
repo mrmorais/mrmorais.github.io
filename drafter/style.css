@@ -1,0 +1,18 @@
+#editor {
+  font-family: "Open Sans", Georgia, 'Times New Roman', Times, serif;
+  width: 70%;
+  margin: 0 auto;
+}
+
+#editor .ql-editor {
+  min-height: 100vh;
+}
+
+#editor p, li {
+  font-size: 17px;
+  line-height: 1.8em;
+}
+
+#editor li::before {
+  top: -0.10em;
+}
