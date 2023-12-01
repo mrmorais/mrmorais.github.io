@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/favicon.ico" />
+    
+
+    <title>
+        
+          Data Product com Apache Pinot: Personalização em &#34;tempo real&#34; - Maradona Morais
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/css/book.css">
+
+    
+<script src="/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NHRGEZLTFH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NHRGEZLTFH');
+</script>
+<!-- End Google Analytics -->
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/">Maradona Morais</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2023<ul>
+<li>Novembro<ul>
+<li><a href="/data-product-com-apache-pinot-personalizacao-em-tempo-real">Data Product com Apache Pinot: Personalização em “tempo real”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2022<ul>
+<li>Outubro<ul>
+<li><a href="/Retorno-de-processamento-assincrono-com-Redis-e-GraphQL-Subscriptions">Retorno de processamento assíncrono com Redis e GraphQL Subscriptions</a></li>
+</ul>
+</li>
+<li>Dezembro<ul>
+<li><a href="/criando-um-jogo-interativo-real-time-com-kafka-ksql-e-vert-x">Criando um jogo interativo “real-time” com Kafka, kSQL e Vert.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+
+  </div>
+</div>
+
+
+<script src="/js/book-sidebar.js"></script>
+
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          <div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-center">
+    Maradona Morais
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">Sobre</a></li>
+<li>2023<ul>
+<li>Novembro<ul>
+<li><a href="/data-product-com-apache-pinot-personalizacao-em-tempo-real">Data Product com Apache Pinot: Personalização em “tempo real”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2022<ul>
+<li>Outubro<ul>
+<li><a href="/Retorno-de-processamento-assincrono-com-Redis-e-GraphQL-Subscriptions">Retorno de processamento assíncrono com Redis e GraphQL Subscriptions</a></li>
+</ul>
+</li>
+<li>Dezembro<ul>
+<li><a href="/criando-um-jogo-interativo-real-time-com-kafka-ksql-e-vert-x">Criando um jogo interativo “real-time” com Kafka, kSQL e Vert.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2019<ul>
+<li>Outubro<ul>
+<li><a href="/Testes-com-Consumer-Driven-Contracts">Testes com Consumer-Driven Contracts</a></li>
+<li><a href="/The-Lazy-World-of-Clojure">(English) The Lazy World of Clojure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2017<ul>
+<li>Março<ul>
+<li><a href="/ecmascript-6-e-como-usar">ECMAScript 6 e como usar</a></li>
+<li><a href="/Aplicacao-real-time-com-socket-io-pt-1">Aplicação real-time com socket.io (parte 1)</a></li>
+</ul>
+</li>
+<li>Junho<ul>
+<li><a href="/C-eleste-Jogo-da-cobrinha-autonomo">C++eleste - Jogo da cobrinha autônomo</a></li>
+</ul>
+</li>
+<li>Setembro<ul>
+<li><a href="/Medindo-qualidade-do-servico-Uber-X-em-Natal-RN">Medindo qualidade do serviço Uber X em Natal&#x2F;RN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2016<ul>
+<li>Maio<ul>
+<li><a href="/Scraprice-API-de-monitoramento-de-precos">Scraprice - API de monitoramento de preços</a></li>
+<li><a href="/Web-Scraping-com-produtos-da-Submarino-com">Web Scraping com produtos da Submarino.com</a></li>
+<li><a href="/IoT-1-Que-haja-luz-com-Johnny-Five-Express-e-Arduino">[IoT 1] Que haja luz com Johnny-Five, Express e Arduino</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<small>
+<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/"><img style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+</small>
+
+<br/>
+
+<style type="text/css" media="screen">
+  .gr_grid_container {
+    /* customize grid container div here. eg: width: 500px; */
+  }
+
+  #gr_grid_widget_1580141760 {
+    margin-top: 10px;
+  }
+
+  #gr_grid_widget_1580141760 h2 {
+    font-size: 16pt;
+  }
+
+  .gr_grid_book_container {
+    /* customize book cover container div here */
+    float: left;
+    width: 39px;
+    height: 60px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+</style>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+  <h1 id="Data-Product-com-Apache-Pinot-Personalizacao-em-“tempo-real”"><a href="#Data-Product-com-Apache-Pinot-Personalizacao-em-“tempo-real”" class="headerlink" title="Data Product com Apache Pinot: Personalização em “tempo real”"></a>Data Product com Apache Pinot: Personalização em “tempo real”</h1><blockquote>
+<p>Este artigo foi reescrito por IA para melhorias de escrita e correções ortográficas. O título é uma sugestão de IA com adaptações. A revisão e criação do conteúdo foi feita por humano</p>
+</blockquote>
+<p>Estamos próximos do final do ano e com ele chega o período de um dos maiores <strong>Data Products</strong> já criados. Estou me referindo ao Spotify Wrapped, um produto sensacional do Spotify que oferece insights empolgantes sobre as músicas que os usuários consumiram durante o último ano. Esse é apenas um exemplo entre vários de personalização de conteúdo e experiências. Outro exemplo mais comum são as recomendações de produtos ou conteúdos (Amazon, Netflix, etc.), além de inúmeras outras aplicações, como marketing, e-commerce e afins.</p>
+<p>Neste artigo, veremos uma técnica simples de personalização que combina conceitos de análise de dados e processamento em tempo real. O produto de dados que estamos desenvolvendo notifica o usuário de que ele é um dos usuários online que mais leu páginas de livros na última hora. Assim como o Spotify o notifica quando você é um dos 0,5% principais fãs de um artista.</p>
+<figure>
+  <img src="../images/demo-data-product.png" alt="Fig. 1 - Protótipo visual do conceito" style="width:73%">
+</figure>
+
+<p>Quais dados nossa aplicação precisa gerar&#x2F;consumir para obter essa informação? Essa aplicação está posicionada no final de uma pipeline de dados, com o objetivo de servir diretamente aos usuários.</p>
+<p>Aqui vou explicar como o dado “cru” é gerado e agregado. Imaginemos que cada página lida por um usuário resulta em um evento <code>PageRead</code>, que contém o ID do usuário e o Timestamp daquela leitura, entre outras informações. Esses eventos são registrados em um tópico e consumidos por um processador de stream que irá realizar a agregação (contagem) em janelas de 1 hora. O resultado dessa agregação é enviado para outro tópico chamado <code>PagesConsumption_1Hour</code>, já contendo informações mais relevantes para nossa aplicação. Mais uma vez, estamos interessados na aplicação final, então vamos assumir que as etapas de geração e agregação estão garantidas.</p>
+<p>Gerei um script para produzir eventos para 10.000 usuários, contendo essa estrutura:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700393000000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">15</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700396600000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700400200000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700403800000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">18</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700407400000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">19</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700411000000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">20</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span><span class="number">1700414600000</span><span class="punctuation">,</span><span class="attr">&quot;time_window&quot;</span><span class="punctuation">:</span><span class="number">1700339000000</span><span class="punctuation">,</span><span class="attr">&quot;user_id&quot;</span><span class="punctuation">:</span><span class="number">4095</span><span class="punctuation">,</span><span class="attr">&quot;pages_read&quot;</span><span class="punctuation">:</span><span class="number">21</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Observe que a cada página consumida, o valor de <code>pages_read</code> é incrementado. Além disso, temos dois atributos relacionados ao tempo:</p>
+<ul>
+<li><code>timestamp</code>: momento em que o evento foi gerado (quando o usuário leu a página)</li>
+<li><code>time_window</code> : a janela a qual corresponde esta agregação. No nosso caso a cada hora a janela é alterada</li>
+</ul>
+<p>Esses eventos são produzidos no tópico Kafka <code>PagesConsumption_1Hour</code>. Agora, precisamos utilizar esses eventos que estão fluindo no Kafka para realizar consultas de forma eficiente, com dados sendo atualizados em tempo real. Para isso, utilizaremos o <strong>Apache Pinot</strong>.</p>
+<h2 id="OLAP-e-OLTP"><a href="#OLAP-e-OLTP" class="headerlink" title="OLAP e OLTP"></a>OLAP e OLTP</h2><p>Apache Pinot é um datastore originalmente desenvolvido pelo LinkedIn, que pertence à categoria <strong>OLAP</strong> (Online Analytical Processing). Enquanto os bancos de dados de propósito geral são classificados com base em sua capacidade transacional e consistência na armazenagem de dados, os bancos de dados OLAP se destacam por sua capacidade de processar eficientemente grandes quantidades de informações com agregações complexas. No dia a dia, é mais comum utilizarmos bancos de dados <strong>OLTP</strong> (Online Transaction Processing), como MySQL e Postgres, enquanto os bancos de dados OLAP são usados para realizar agregações em grandes volumes de dados.</p>
+<p>Algumas características do Apache Pinot o tornam ideal para a aplicação que estamos desenvolvendo: é muito rápido (realizei um teste de carga nesta aplicação e os resultados foram adequados), possui integração fácil com o Kafka (nativo), permite upserts eficientes (o que será necessário devido ao formato dos eventos utilizados) e fornece uma interface SQL (o que facilita bastante o consumo).</p>
+<h2 id="Configurando-o-Schema"><a href="#Configurando-o-Schema" class="headerlink" title="Configurando o Schema"></a>Configurando o Schema</h2><p>A instalação e utilização do Pinot é super simples. Então, vamos direto à criação do Schema que vamos utilizar. Aqui definimos quais atributos dos nossos eventos:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;primaryKeyColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;user_id&quot;</span><span class="punctuation">,</span> <span class="string">&quot;time_window&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;schemaName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user_pages_consumption&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dimensionFieldSpecs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user_id&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;INT&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;metricFieldSpecs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages_read&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LONG&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dateTimeFieldSpecs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;timestamp&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LONG&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1:MILLISECONDS:EPOCH&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;granularity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1:MILLISECONDS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;time_window&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dataType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;LONG&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;format&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1:MILLISECONDS:EPOCH&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;granularity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1:MILLISECONDS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>A definição correta do tipo de atributo ajudará nas otimizações que o Pinot fará ao executar as queries.</p>
+<ul>
+<li><strong>Chave Primária</strong>: compomos a chave primária utilizando o <code>user_id</code> e o <code>time_window</code>. Isso faz sentido, já que queremos usar a feature de upsert, ou seja, cada novo evento de um usuário em uma janela de tempo deverá sobrescrever os valores existentes.</li>
+<li><strong>Dimensões</strong>: o tipo de atributo dimensão é utilizado para seleções e agrupamentos, como em <code>GROUP BY</code> e <code>WHERE</code></li>
+<li><strong>Métricas</strong>: utilizado para atributos que serão provavelmente agregados (usados com <code>SUM</code> , <code>COUNT</code>, etc.) No nosso caso claramente o <code>pages_read</code> é um atributo metric.</li>
+</ul>
+<h2 id="Criando-uma-Real-time-table"><a href="#Criando-uma-Real-time-table" class="headerlink" title="Criando uma Real-time table"></a>Criando uma Real-time table</h2><p>As tabelas de tempo real são utilizadas quando o consumo é feito através de stream de dados, como é o nosso caso já que usaremos um tópico Kafka como fonte de dados. Esta é a configuração da nossa tabela:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;REALTIME&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;tableName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user_pages_consumption_REALTIME&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tableType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;REALTIME&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;segmentsConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;replication&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;schemaName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user_pages_consumption&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;replicasPerPartition&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;timeColumnName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;timestamp&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;minimizeDataMovement&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tenants&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;broker&quot;</span><span class="punctuation">:</span> <span class="string">&quot;DefaultTenant&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;server&quot;</span><span class="punctuation">:</span> <span class="string">&quot;DefaultTenant&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;tagOverrideConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tableIndexConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;invertedIndexColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;noDictionaryColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;rangeIndexColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;rangeIndexVersion&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;autoGeneratedInvertedIndex&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;createInvertedIndexDuringSegmentGeneration&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;sortedColumn&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;bloomFilterColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;loadMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MMAP&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;streamConfigs&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;streamType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;kafka&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.topic.name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;PagesConsumption_1Hour&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.broker.list&quot;</span><span class="punctuation">:</span> <span class="string">&quot;192.168.1.42:30992&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.consumer.type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lowlevel&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.consumer.prop.auto.offset.reset&quot;</span><span class="punctuation">:</span> <span class="string">&quot;smallest&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.consumer.factory.class.name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;stream.kafka.decoder.class.name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apache.pinot.plugin.stream.kafka.KafkaJSONMessageDecoder&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;realtime.segment.flush.threshold.rows&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;realtime.segment.flush.threshold.time&quot;</span><span class="punctuation">:</span> <span class="string">&quot;24h&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;realtime.segment.flush.threshold.segment.size&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100M&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;security.protocol&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SASL_PLAINTEXT&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;sasl.mechanism&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SCRAM-SHA-256&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;sasl.jaas.config&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apache.kafka.common.security.scram.ScramLoginModule required username=user1 password=user1;&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;onHeapDictionaryColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;varLengthDictionaryColumns&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enableDefaultStarTree&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;enableDynamicStarTreeCreation&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;aggregateMetrics&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;nullHandlingEnabled&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;optimizeDictionary&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;optimizeDictionaryForMetrics&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;noDictionarySizeRatioThreshold&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;metadata&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;quota&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;routing&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;instanceSelectorType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;strictReplicaGroup&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;query&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;ingestionConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;segmentTimeValueCheck&quot;</span><span class="punctuation">:</span> <span class="keyword">true</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;continueOnError&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;rowTimeValueCheck&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;isDimTable&quot;</span><span class="punctuation">:</span> <span class="keyword">false</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;upsertConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;mode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;FULL&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Tem muita informação aí, mas basicamente definimos como conectar com o Kafka, qual tópico e o Schema estamos utilizando. Além disso, habilitamos o <code>upsertConfig</code> . Essa configuração permitirá que a tabela seja compactada mais eficientemente, reduzindo a quantidade de documentos que serão consultados pelas queries.</p>
+<h2 id="Arquitetura-Resumida"><a href="#Arquitetura-Resumida" class="headerlink" title="Arquitetura Resumida"></a>Arquitetura Resumida</h2><p>Consolidando o que temos até aqui:</p>
+<ul>
+<li>2 tópicos em Kafka utilizados para registar os eventos de consumo</li>
+<li>Um processo de stream que faz a agregação contando a quantidade de páginas lidas na última hora. Estamos abstraíndo esse processo aqui, existem várias ferramentas para isso: o Kafka Streams, kSQL e Flink são alguns exemplos. Como não faz parte desse artigo, vamos representar como um “passo mágico”</li>
+<li>Uma real-time table no Pinot, que utiliza upsert para compartar os registros de um tópico Kafka, e que será utilizada para execução de queries</li>
+</ul>
+<figure>
+  <img src="../images/arch-data-product-pinot.png" alt="Fig. 2 - Diagrama de arquitura em alto nível" style="width:75%">
+</figure>
+
+<p>Falta agora descrevermos como se comportará o último componente. A aplicação web que atende o usuário executa queries no Pinot usando um endpoint REST com sintaxe SQL. Mas qual precisamente é a abordagem para identificar se o usuário é o TOP X% leitor? e como transformamos isso em query?</p>
+<h2 id="Consultando-a-distribuicao-de-frequencias"><a href="#Consultando-a-distribuicao-de-frequencias" class="headerlink" title="Consultando a distribuição de frequencias"></a>Consultando a distribuição de frequencias</h2><p>O problema de definir que o usuário é o TOP X leitor consiste em encontrar o percentil em que o usuário se encontra. Ou seja, ordenamos a frequencia (número de páginas lidas) de todos os usuários de forma crescente e identificamos o percentil do usuário com base em quantas páginas ele leu.</p>
+<p>Este processo nos daria com boa precisão a posição exata do usuário em relação aos outros. Mas, apesar de não ser tão impraticável ordenar todas as frequencias, essa aplicação precisa acertar exatamente o valor, um número razoávelmente próximo já atende bem a necessidade. Da mesma forma, o Spotify não diz que o usuário é o 0,4884782563% top fã de um artista.</p>
+<p>Para reduzir a complexidade desse problema podemos trabalhar com histogramas. Separamos as contagens de leituras dos usuários em n buckets de tamanhos iguais (por exemplo, 10). Dessa forma extratificamos as contagens em uma estrutura mais simples que ainda representa os valores reais.</p>
+<p>Isso significa que se Alice leu 11 páginas e Bob leu 13 para nosso propósito os dois estão no mesmo bucket, o do range 10-20.</p>
+<figure>
+  <img src="../images/histogram-users-books.png" alt="Fig. 3 - Exemplificação de Histograma" style="width:80%">
+</figure>
+
+<p>Dessa forma fica fácil identificar qual o percentil de um usuário, encontramos qual o bucket do usuário, e somamos a quantidade de usuários antes desse bucket. Na prática:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sabemos que os buckets possuem tamanho 10</span></span><br><span class="line"><span class="keyword">const</span> userBucketIndex = <span class="title class_">Math</span>.<span class="title function_">floor</span>(userPagesRead / <span class="number">10</span>) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Calculamos o total de usuários..</span></span><br><span class="line"><span class="keyword">const</span> allUsersCount = histogram.<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, curr</span>) =&gt;</span> acc + curr, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// .. e quantos usuários estão antes do bucket do usuário atual</span></span><br><span class="line"><span class="keyword">const</span> usersBeforeCount = histogram</span><br><span class="line">  .<span class="title function_">filter</span>(<span class="function">(<span class="params">_, index</span>) =&gt;</span> index &lt; userBucketIndex)</span><br><span class="line">  .<span class="title function_">reduce</span>(<span class="function">(<span class="params">acc, curr</span>) =&gt;</span> acc + curr, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Agora sim temos o percentil facilmente</span></span><br><span class="line"><span class="keyword">const</span> percentil = (usersBeforeCount / allUsersCount) * <span class="number">100</span>;</span><br><span class="line"><span class="comment">// Se quisermos dizer que o usuário é o TOP X%, basta ver o que falta para 100%</span></span><br><span class="line"><span class="keyword">const</span> topPercent = <span class="number">100</span> - percentil;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Você leu mais do que <span class="subst">$&#123;percentil&#125;</span>% dos usuários online! Parabéns`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>As queries do pinot ficam bem simples, muito similar a qualquer request em bancos de dados SQL:</p>
+<p><strong>Consultamos o último registro</strong> de consumo do usuário, com o seu ID</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> user_pages_consumption <span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">7367</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> time_window <span class="keyword">DESC</span> LIMIT <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>E <strong>obtemos o histograma com as distribuições</strong> dos consumos de todos os usuários para a timewindow que encontramos na query anterior.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> HISTOGRAM(pages_read, <span class="number">0</span>, <span class="number">400</span>, <span class="number">40</span>) <span class="keyword">FROM</span> user_pages_consumption <span class="keyword">WHERE</span> time_window <span class="operator">=</span> <span class="number">1700339000000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Lembra que lá atrás definimos que o <code>pages_read</code> é do tipo “métrica”? Isso está ajudando agora, pois estamos aplicando a agregação HISTOGRAM nessa variável.</p>
+<h2 id="Conclusao"><a href="#Conclusao" class="headerlink" title="Conclusão"></a>Conclusão</h2><p>A ideia aqui foi explorar alguns conceitos de processamento de dados com base em um cenário de aplicação real:</p>
+<ul>
+<li>Abstraímos a complexidade do problema ao abrir mão de precisão em favor da performance da aplicação</li>
+<li>Exploramos os mecanismos básicos do Pinot e sua capacidade de lidar com dados de maneira escalável e performática</li>
+<li>Construímos uma aplicação com princípios de Data Product utilizando Kafka e Pinot</li>
+</ul>
+<p>Espero que tenha conseguindo compreender bem essa aplicação. Diferentemente de outros projetos aqui no posts não criei nenhum repositório com o código utilizado, principalmente para ter um artigo mais fluido e sem muito foco em código por sí</p>
+<p>Temos um outro artigo “**<a target="_blank" rel="noopener" href="https://posts.mrmorais.com/criando-um-jogo-interativo-real-time-com-kafka-ksql-e-vert-x/">Criando um jogo interativo “real-time” com Kafka, kSQL e Vert.x</a>**” que está relacionado a este tema em que criamos um jogo de interação real-time utilizando Kafka. Devo trazer mais artigos sobre processamento e stream de dados, assim como sobre técnicas de personalização, collaborative filtering e outros.</p>
+<h3 id="Links-e-Recomendacoes"><a href="#Links-e-Recomendacoes" class="headerlink" title="Links e Recomendações"></a>Links e Recomendações</h3><p>Algumas das referências para esse artigo são:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.pinot.apache.org/">Documentação do Pinot</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.pinot.apache.org/configuration-reference/functions/histogram">Histograma | Pinot</a></li>
+<li><a target="_blank" rel="noopener" href="https://kafka.apache.org/">Documentação do Kafka</a></li>
+</ul>
+<p>No início do artigo falei um pouco sobre OLTP e OLAP, são conceitos bem importantes e estão relacionados ao funcionamento interno de bancos de dados. Posso recomendar 2 livros nesse assunto que são super relevantes:</p>
+<ul>
+<li>Database Internals, de Alex Petrov</li>
+<li>Designing Data-Intensive Applications, de Martin Kleppmann</li>
+</ul>
+
+
+  <hr/>
+  <p>Este trabalho está licenciado com uma Licença <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons - Atribuição-NãoComercial 4.0 Internacional</a>.</p>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+
+<script src="/js/book-post.js"></script>
+
+
+<script src="/js/homelab.js"></script>
+
+
+<script src="/js/meteorite.js"></script>
+
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <a class="book-toc-expand" onclick="expand_toc()">Expandir tudo</a>
+    <a onclick="go_top()">Voltar ao topo</a>
+    <a onclick="go_bottom()">Ir para o final</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Comprimir tudo"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expandir tudo"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
