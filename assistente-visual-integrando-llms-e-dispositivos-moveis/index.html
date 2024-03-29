@@ -11,7 +11,7 @@
 
     <title>
         
-          Web Scraping com produtos da Submarino.com - Maradona Morais
+          Assistente Visual: Integrando LLMs e Dispositivos Móveis - Maradona Morais
         
     </title>
 
@@ -279,16 +279,40 @@
 </div>
 
 <div class="book-post">
-  <h1 id="Web-Scraping-com-produtos-da-Submarino-com"><a href="#Web-Scraping-com-produtos-da-Submarino-com" class="headerlink" title="Web Scraping com produtos da Submarino.com"></a>Web Scraping com produtos da Submarino.com</h1><p>17 de maio de 2016</p>
-<p><img src="http://1.bp.blogspot.com/-uO60O4C0BTQ/Ue88sjiS3MI/AAAAAAABK2o/baYvdCguuu8/s1600/submarino+logo.jpg" alt="Logomarca da Submarino"></p>
-<p>Olá! Desenvolvi, hoje, um algoritmo muito simplista que tem como funcionalidade realizar Web Scraping em uma página de qualquer produto da empresa Submarino e retornar os atributos daquele produto como objeto.</p>
-<p>Web Scraping é uma técnica bastante simples e muito utilizada pelos robôs da Google, que buscam e qualificam conteúdos na internet para serem buscados pelo navegador. Esta técnica consiste em ler todo o HTML de uma determinada página, como se fosse interpretá-la. Parecido com o que fazem os leitores de tela.</p>
-<p>Pois bem, com Web Scraping é possível realizar a obtenção de dados de qualquer tipo de página e com produtos esta regra torna-se bem mais simples já que sempre existe uma pré-disposição dos elementos de uma página, o que nós chamamos de <em>layout</em>. Portanto, o meu algoritmo sabe qual o <em>layout</em> das paginas de produtos da Submarino e, com isso, ele consegue ler as informações de quase todos os produtos.</p>
-<p>Eu acabei de disponibilizar o pacote desta simples aplicação (ao abrir, você verá que é realmente simples) e está disponível no NPM com o nome <strong>submarino-scrap</strong> (<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/submarino-scrap">acessar</a>)</p>
-<h4 id="Por-que"><a href="#Por-que" class="headerlink" title="Por quê?"></a>Por quê?</h4><p>A aplicação deste simples algoritmo pode ser útil em diversas coisas. A primeira coisa que deve ser notada é que nenhuma empresa possui uma API pública de seus produtos, mesmo que estas informações possam ser de interesse para diversas aplicações.</p>
-<p>Fazer uma API pública destas informações permitiria o desenvolvimento de diversas aplicações legais (e abertas) que façam por exemplo a monitoria da variação dos preços dos produtos (ver como funciona a “Black Friday”), base estatística, mineração de dados, etc.</p>
-<p>A ideia é fazer e disponibilizar um web scraping para cada grande e-commerce da internet e por fim criar um pacote que integre todos os demais e que faça a leitura de produtos da maioria dos sites de venda do Brasil.</p>
-<p>Não irei fazer tutorial deste pacote aqui no sie, uma exemplo prático já se encontra na <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/submarino-scrap">página do NPM</a> e você pode conferir lá. Nos próximos dias estarei criando os novos “scraps” e também disponibilizando um repositório no GitHub para que mais pessoas possam se tornar contribuidoras.</p>
+  <img style="display: none;" src="https://dynamic-og-image-generator.vercel.app/api/generate?title=Assistente+Visual%3A+Integrando+LLMs+e+Dispositivos+M%C3%B3veis&author=Maradona+Morais&websiteUrl=posts.mrmorais.com&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8071409%3Fv%3D4&theme=matrix"/>
+
+<h1 id="Assistente-Visual-Integrando-LLMs-e-Dispositivos-Moveis"><a href="#Assistente-Visual-Integrando-LLMs-e-Dispositivos-Moveis" class="headerlink" title="Assistente Visual: Integrando LLMs e Dispositivos Móveis"></a>Assistente Visual: Integrando LLMs e Dispositivos Móveis</h1><p>Estamos presenciando, junto ao boom das IAs generativas, a corrida do ouro pelas soluções que tomem uma boa fatia desse “novo mercado”. Até então, temos várias grandes apostas e alguns poucos winners. Um dos caminhos que me chama a atenção é o que a <a target="_blank" rel="noopener" href="https://www.rabbit.tech/">Rabbit</a> e a <a target="_blank" rel="noopener" href="https://humane.com/">Humane AI</a> estão trilhando, com desenvolvimento de <i>AI-devices</i>, uma combinação de assistente, visão computacional, “agentes” (que nesse caso são modelos LAM, Large Action Model) e interface conversacional.</p>
+<p>O mais provocador é o posicionamento anti-aplicativos desses devices. Por que vamos precisar de novos dispositivos que “substituam” os smartphones? Essa solução não poderia ser mais um aplicativo? o que há de tão especial? Os argumentos são geralmente relacionados à experiência do usuário e de que o sistema precisa ser inteiramente integrado, possuindo até mesmo o próprio OS.</p>
+<p>Minha ideia então foi desenvolver um assistente visual, dentro de um aplicativo, utilizando o que temos de mais acessível em termos de IAs generativas. Obviamente este aplicativo conceito não se aproxima da capacidade dos AI-devices. Em linhas gerais, um assistente visual deve (1) entender o que está sendo mostrado, (2) “pensar” e decidir o que fazer e (3) executar uma ação, este seria o tipo de interação mais simples.</p>
+<p>Demonstrações</p>
+<div style="display: flex;">
+    <figure style="width: 33.3%;display: flex;flex-direction:column;align-items: center;">
+      <video style="border-radius: 4px;" width="200" heigth="400" controls autoplay muted loop>
+        <source src="../videos/vis_assist_youtube.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Pesquisa vídeo no YouTube</figcaption>
+    </figure>
+    <figure style="width: 33.3%;display: flex;flex-direction:column;align-items: center;">
+      <video style="border-radius: 4px;" width="200" heigth="400" controls>
+        <source src="../videos/vis_assist_calendar.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Adiciona evento ao Google Calendar</figcaption>
+    </figure>
+    <figure style="width: 33.3%;display: flex;flex-direction:column;align-items: center;">
+      <video style="border-radius: 4px;" width="200" heigth="400" controls>
+        <source src="../videos/vis_assist_math.mp4" type="video/mp4" />
+      </video>
+      <figcaption>Resolve problema de matemática escrito à mão</figcaption>
+    </figure>
+</div>
+
+<p>Vários modelos multimodais conseguem atender ao primeiro passo como o GPT-4V e Gemini 1.5 Pro. Uma das alternativas open source, que considerei ser mais interessante, é o <a target="_blank" rel="noopener" href="https://llava-vl.github.io/">Llava</a>, que possui um bom desempenho em descrição detalhada e reasoning. Para a segunda e terceira etapa da interação, crei um agente com LangChain e desenvolvi algumas Tools para demonstração como busca no Youtube, pesquisa na internet, criar eventos no Google Calendar e adicionar itens a lista de compras. Para essa etapa optei por usar os modelos da OpenIA principalmente pela facilidade no uso da function calling das Tools que criei.</p>
+<p>Por fim, a interface mais natural para esse tipo de agente é a voz, então utilizei o STT e Speech APIs do Google. A organização geral da aplicação ficou assim:</p>
+<figure>
+  <img src="../images/vis_assist_overall.png" style="width:73%">
+</figure>
+
+<p>Acredito que essa solução tem uma viabilidade em aplicativos móveis, já existem em menor escala e pode ser um caminho que a indústria vai explorar com mais força uma vez que essa infusão se tornar mais performática com modelos menores e mais portáteis. Senão em smarthphones, em dispositivos multifuncionais como a Meta já abertamente vem desenvolvendo. O que resta saber é com qual facilidade esses assistentes serão adotados e se tornarão mainstream.</p>
 
 
   <hr/>
