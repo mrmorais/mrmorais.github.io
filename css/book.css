@@ -73,11 +73,19 @@ img {
 	.book-navbar {
 		display: none;
 	}
+
+	.book-post {
+		width: 85%;
+	}
 }
 
 @media all and (max-width: 959px) {
 	.book-navbar {
 		display: block;
+	}
+
+	.book-post {
+		width: 95%;
 	}
 }
 
@@ -99,7 +107,6 @@ img {
 }
 
 .book-post {
-	max-width: 70%;
 	margin: auto;
 	font-family: 'Open Sans', Georgia, 'Times New Roman', Times, serif;
 }
